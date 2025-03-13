@@ -1,0 +1,10 @@
+syntax = "proto3";
+package overlock.storage.v1beta1;
+
+option go_package = "github.com/web-seven/overlock-api/go/node/overlock/storage/v1beta1";
+
+message Registry {
+  string name = 1;
+  string provider = 2;
+  uint64 id = 3;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+package overlock.crossplane.v1beta1;
+
+import "overlock/crossplane/v1beta1/metadata.proto";
+
+option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
+
+// Function
+message Function {
+  // name
+  Metadata metadata = 1;
+  // spec
+  FunctionSpec spec = 2;
+  // id
+  uint64 id = 4;
+  // creator
+  string creator = 5;
+}
+
+// Spec defines the specification of the function.
+message FunctionSpec {
+  // package
+  string package = 1;
+}
