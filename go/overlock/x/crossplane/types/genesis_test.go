@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"overlock/x/crossplane/types"
+	"github.com/web-seven/overlock-api/go/overlock/x/crossplane/types"
 
 	"github.com/stretchr/testify/require"
 )

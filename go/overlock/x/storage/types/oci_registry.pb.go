@@ -9,7 +9,7 @@ import (
 	io "io"
 	math "math"
 	math_bits "math/bits"
-	types "overlock/x/crossplane/types"
+	types "github.com/web-seven/overlock-api/go/overlock/x/crossplane/types"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

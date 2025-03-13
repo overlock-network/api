@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"overlock/x/storage/types"
+	"github.com/web-seven/overlock-api/go/overlock/x/storage/types"
 
 	"github.com/stretchr/testify/require"
 )

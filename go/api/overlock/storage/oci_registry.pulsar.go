@@ -8,7 +8,7 @@ import (
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	io "io"
-	crossplane "overlock/api/overlock/crossplane"
+	crossplane "github.com/web-seven/overlock-api/go/api/overlock/crossplane"
 	reflect "reflect"
 	sync "sync"
 )
