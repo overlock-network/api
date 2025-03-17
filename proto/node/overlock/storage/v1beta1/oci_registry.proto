@@ -1,0 +1,28 @@
+syntax = "proto3";
+package overlock.storage.v1beta1;
+
+import "overlock/crossplane/v1beta1/metadata.proto";
+
+option go_package = "github.com/web-seven/overlock-api/go/node/overlock/storage/v1beta1";
+
+// OCIRegistry
+message OCIRegistry {
+  // id
+  uint64 id = 1;
+  // creator
+  string creator = 2;
+  // metadata
+  overlock.crossplane.v1beta1.Metadata metadata = 3;
+  // spec
+  RegistrySpec spec = 4;
+}
+
+// RegistrySpec
+message RegistrySpec {
+  // url
+  string url = 1;
+  // type
+  string type = 2;
+  // provider
+  string provider = 3;
+}

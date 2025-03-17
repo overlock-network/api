@@ -1,14 +1,23 @@
 #!/bin/bash
 
-EXCLUDE_PATHS=$(find proto -type f -name "module.proto" | sed 's/^/--exclude-path=/')
+CURRENT_DIR=$(pwd)
 
-buf generate proto \
+cd proto/node || exit 1
+
+EXCLUDE_PATHS=$(find . -type f -name "module.proto" | sed 's/^/--exclude-path=/' | tr '\n' ' ')
+
+buf generate \
   --error-format=json \
   --log-format=json \
-  --template=proto/buf.gen.gogo.yaml \
+  --template=buf.gen.gogo.yaml \
   $EXCLUDE_PATHS
 
-buf generate proto \
+buf generate \
   --error-format=json \
   --log-format=json \
-  --template=proto/buf.gen.pulsar.yaml
+  --template=buf.gen.pulsar.yaml
+
+cd "$CURRENT_DIR" || exit 1
+
+cp -rv go/github.com/web-seven/overlock-api/. ./
+rm -rf go/github.com
