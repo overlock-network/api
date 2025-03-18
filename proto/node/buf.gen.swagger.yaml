@@ -12,3 +12,6 @@ plugins:
       - openapi_naming_strategy=fqn
       - json_names_for_fields=false
       - generate_unbound_methods=true
+      - Mcosmos/app/v1alpha1/module.proto=github.com/cosmos/cosmos-sdk
+      - Moverlock/crossplane/v1beta1/module/module.proto=github.com/web-seven/overlock-api/go
+      - Moverlock/storage/v1beta1/module/module.proto=github.com/web-seven/overlock-api/go

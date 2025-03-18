@@ -17,6 +17,11 @@ buf generate \
   --log-format=json \
   --template=buf.gen.pulsar.yaml
 
+buf generate \
+  --error-format=json \
+  --log-format=json \
+  --template=buf.gen.swagger.yaml
+
 cd "$CURRENT_DIR" || exit 1
 
 cp -rv go/github.com/web-seven/overlock-api/. ./
