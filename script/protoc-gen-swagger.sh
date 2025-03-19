@@ -27,3 +27,5 @@ swagger-combine \
     -o ./docs/swagger-ui/swagger.yaml \
     --continueOnConflictingPaths=true \
     --includeDefinitions=true
+
+cleanup

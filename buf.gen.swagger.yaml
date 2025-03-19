@@ -9,8 +9,9 @@ plugins:
     out: ./.cache/tmp/swagger-gen
     opt:
       - logtostderr=true
-      - openapi_naming_strategy=fqn
+      - openapi_naming_strategy=legacy
       - json_names_for_fields=false
+      - simple_operation_ids=false
       - generate_unbound_methods=true
       - Mcosmos/app/v1alpha1/module.proto=github.com/cosmos/cosmos-sdk
       - Moverlock/crossplane/v1beta1/module/module.proto=github.com/web-seven/overlock-api/go
