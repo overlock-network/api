@@ -39,8 +39,8 @@ deps:
   - remote: buf.build
     owner: protocolbuffers
     repository: wellknowntypes
-    commit: fe2b451906844d42b2d078c4d35d87f6
-    digest: shake256:af5094c3e1e98e824e94928eb24fa2dcba0d8a34d516094b53667099dccb2e669debfff7094fca2f63b563e26d440af681025fb872fc1eabfb22b0273d8027c0
+    commit: 7727a3b7399540398e5736b9916f0faa
+    digest: shake256:74c046f009811965d227acd11bb2c6259bf387759d4230b95405e402a2ed4212d6f4babab690407d07bc81095c3917c4ae9144195ddfb081525c9aec58e51173
   - remote: buf.build
     owner: tendermint
     repository: tendermint
