@@ -1,6 +1,8 @@
 package docs
 
-import _ "embed"
+import (
+	"embed"
+)
 
 //go:embed swagger-ui/swagger.yaml
-var SwaggerYAML []byte
+var SwaggerYAML embed.FS
