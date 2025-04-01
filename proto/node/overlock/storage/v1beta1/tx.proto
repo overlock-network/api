@@ -22,6 +22,7 @@ message MsgCreateRegistry {
   string creator = 1;
   string name = 2;
   string provider = 3;
+  uint64 environment_id = 4;
 }
 
 message MsgCreateRegistryResponse {
@@ -34,6 +35,7 @@ message MsgUpdateRegistry {
   string name = 2;
   string provider = 3;
   uint64 id = 4;
+  uint64 environment_id = 5;
 }
 
 message MsgUpdateRegistryResponse {}
