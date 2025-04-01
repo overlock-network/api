@@ -7,4 +7,5 @@ message Registry {
   string name = 1;
   string provider = 2;
   uint64 id = 3;
+  uint64 environment_id = 4;
 }
