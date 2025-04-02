@@ -31,6 +31,8 @@ message ConfigurationSpec {
 
   // configurations
   repeated uint64 configurations = 7;
+
+  string package = 8;
 }
 
 // Crossplane specs.

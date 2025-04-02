@@ -327,6 +327,8 @@ paths:
                             type: string
                             format: uint64
                           title: configurations
+                        package:
+                          type: string
                       description: Spec defines the specification of the composition.
                     creator:
                       type: string
@@ -1310,6 +1312,8 @@ paths:
                           type: string
                           format: uint64
                         title: configurations
+                      package:
+                        type: string
                     description: Spec defines the specification of the composition.
                   creator:
                     type: string
@@ -2189,6 +2193,8 @@ definitions:
               type: string
               format: uint64
             title: configurations
+          package:
+            type: string
         description: Spec defines the specification of the composition.
       creator:
         type: string
@@ -2232,6 +2238,8 @@ definitions:
           type: string
           format: uint64
         title: configurations
+      package:
+        type: string
     description: Spec defines the specification of the composition.
   v1beta1ConvertTransform:
     type: object
@@ -2827,6 +2835,8 @@ definitions:
                     type: string
                     format: uint64
                   title: configurations
+                package:
+                  type: string
               description: Spec defines the specification of the composition.
             creator:
               type: string
@@ -3327,6 +3337,8 @@ definitions:
                   type: string
                   format: uint64
                 title: configurations
+              package:
+                type: string
             description: Spec defines the specification of the composition.
           creator:
             type: string
