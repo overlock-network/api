@@ -6,37 +6,15 @@ import "amino/amino.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
-import "overlock/crossplane/v1beta1/composition.proto";
 import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
-import "overlock/crossplane/v1beta1/function.proto";
 import "overlock/crossplane/v1beta1/metadata.proto";
-import "overlock/crossplane/v1beta1/provider.proto";
-import "overlock/crossplane/v1beta1/xrd.proto";
 
 option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
 
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
-
-  // CreateComposition
-  rpc CreateComposition(MsgCreateComposition) returns (MsgCreateCompositionResponse);
-
-  // UpdateComposition
-  rpc UpdateComposition(MsgUpdateComposition) returns (MsgUpdateCompositionResponse);
-
-  // DeleteComposition
-  rpc DeleteComposition(MsgDeleteComposition) returns (MsgDeleteCompositionResponse);
-
-  // CreateXrd
-  rpc CreateXrd(MsgCreateXrd) returns (MsgCreateXrdResponse);
-
-  // UpdateXrd
-  rpc UpdateXrd(MsgUpdateXrd) returns (MsgUpdateXrdResponse);
-
-  // DeleteXrd
-  rpc DeleteXrd(MsgDeleteXrd) returns (MsgDeleteXrdResponse);
 
   // CreateConfiguration
   rpc CreateConfiguration(MsgCreateConfiguration) returns (MsgCreateConfigurationResponse);
@@ -55,102 +33,13 @@ service Msg {
 
   // DeleteEnvironment
   rpc DeleteEnvironment(MsgDeleteEnvironment) returns (MsgDeleteEnvironmentResponse);
-
-  // CreateProvider
-  rpc CreateProvider(MsgCreateProvider) returns (MsgCreateProviderResponse);
-
-  // UpdateProvider
-  rpc UpdateProvider(MsgUpdateProvider) returns (MsgUpdateProviderResponse);
-
-  // DeleteProvider
-  rpc DeleteProvider(MsgDeleteProvider) returns (MsgDeleteProviderResponse);
-
-  // CreateFunction
-  rpc CreateFunction(MsgCreateFunction) returns (MsgCreateFunctionResponse);
-
-  // UpdateFunction
-  rpc UpdateFunction(MsgUpdateFunction) returns (MsgUpdateFunctionResponse);
-
-  // DeleteFunction
-  rpc DeleteFunction(MsgDeleteFunction) returns (MsgDeleteFunctionResponse);
 }
-
-// MsgCreateComposition
-message MsgCreateComposition {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  Metadata metadata = 4;
-  CompositionSpec spec = 5;
-}
-
-// MsgCreateCompositionResponse
-message MsgCreateCompositionResponse {
-  uint64 id = 1;
-}
-
-// MsgUpdateComposition
-message MsgUpdateComposition {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  Metadata metadata = 5;
-  CompositionSpec spec = 6;
-}
-
-// MsgUpdateCompositionResponse
-message MsgUpdateCompositionResponse {}
-
-// MsgDeleteComposition
-message MsgDeleteComposition {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-}
-
-// MsgDeleteCompositionResponse
-message MsgDeleteCompositionResponse {}
-
-// MsgCreateXrd
-message MsgCreateXrd {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  Metadata metadata = 4;
-  XrdSpec spec = 5;
-}
-
-// MsgCreateXrdResponse
-message MsgCreateXrdResponse {
-  uint64 id = 1;
-}
-
-// MsgUpdateXrd
-message MsgUpdateXrd {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  Metadata metadata = 5;
-  XrdSpec spec = 6;
-}
-
-// MsgUpdateXrdResponse
-message MsgUpdateXrdResponse {}
-
-// MsgDeleteXrd
-message MsgDeleteXrd {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-}
-
-// MsgDeleteXrdResponse
-message MsgDeleteXrdResponse {}
 
 // MsgCreateConfiguration
 message MsgCreateConfiguration {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   Metadata metadata = 4;
-  ConfigurationSpec spec = 5;
 }
 
 // MsgCreateConfigurationResponse
@@ -164,7 +53,6 @@ message MsgUpdateConfiguration {
   string creator = 1;
   uint64 id = 2;
   Metadata metadata = 5;
-  ConfigurationSpec spec = 6;
 }
 
 // MsgUpdateConfigurationResponse
@@ -185,7 +73,6 @@ message MsgCreateEnvironment {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   Metadata metadata = 3;
-  EnvironmentSpec spec = 4;
 }
 
 // MsgCreateEnvironmentResponse
@@ -199,7 +86,6 @@ message MsgUpdateEnvironment {
   string creator = 1;
   uint64 id = 2;
   Metadata metadata = 3;
-  EnvironmentSpec spec = 4;
 }
 
 // MsgUpdateEnvironmentResponse
@@ -216,81 +102,3 @@ message MsgDeleteEnvironment {
 
 // MsgDeleteEnvironmentResponse
 message MsgDeleteEnvironmentResponse {}
-
-// MsgCreateProvider
-message MsgCreateProvider {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  Metadata metadata = 2;
-  ProviderSpec spec = 3;
-}
-
-// MsgCreateProviderResponse
-message MsgCreateProviderResponse {
-  uint64 id = 1;
-}
-
-// MsgUpdateProvider
-message MsgUpdateProvider {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  Metadata metadata = 3;
-  ProviderSpec spec = 4;
-}
-
-// MsgUpdateProviderResponse
-message MsgUpdateProviderResponse {
-  uint64 id = 1;
-}
-
-// MsgDeleteProvider
-message MsgDeleteProvider {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-}
-
-// MsgDeleteProviderResponse
-message MsgDeleteProviderResponse {
-  uint64 id = 1;
-}
-
-// MsgCreateFunction
-message MsgCreateFunction {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  Metadata metadata = 2;
-  FunctionSpec spec = 3;
-}
-
-// MsgCreateFunctionResponse
-message MsgCreateFunctionResponse {
-  uint64 id = 1;
-}
-
-// MsgUpdateFunction
-message MsgUpdateFunction {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  Metadata metadata = 3;
-  FunctionSpec spec = 4;
-}
-
-// MsgUpdateFunctionResponse
-message MsgUpdateFunctionResponse {
-  uint64 id = 1;
-}
-
-// MsgDeleteFunction
-message MsgDeleteFunction {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-}
-
-// MsgDeleteFunctionResponse
-message MsgDeleteFunctionResponse {
-  uint64 id = 1;
-}

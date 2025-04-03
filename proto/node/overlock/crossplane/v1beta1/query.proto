@@ -6,12 +6,8 @@ import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
-import "overlock/crossplane/v1beta1/composition.proto";
 import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
-import "overlock/crossplane/v1beta1/function.proto";
-import "overlock/crossplane/v1beta1/provider.proto";
-import "overlock/crossplane/v1beta1/xrd.proto";
 
 option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
 
@@ -27,26 +23,6 @@ service Query {
     option (google.api.http).get = "/overlock/crossplane/list_configuration";
   }
 
-  // Queries a list of ListComposition items.
-  rpc ListComposition(QueryListCompositionRequest) returns (QueryListCompositionResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_composition";
-  }
-
-  // Queries a list of ShowComposition items.
-  rpc ShowComposition(QueryShowCompositionRequest) returns (QueryShowCompositionResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_composition/{id}";
-  }
-
-  // Queries a list of ShowXrd items.
-  rpc ShowXrd(QueryShowXrdRequest) returns (QueryShowXrdResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_xrd/{id}";
-  }
-
-  // Queries a list of ListXrd items.
-  rpc ListXrd(QueryListXrdRequest) returns (QueryListXrdResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_xrd";
-  }
-
   // Queries a list of ShowEnvironment items.
   rpc ShowEnvironment(QueryShowEnvironmentRequest) returns (QueryShowEnvironmentResponse) {
     option (google.api.http).get = "/overlock/crossplane/show_environment/{id}";
@@ -55,26 +31,6 @@ service Query {
   // Queries a list of ListEnvironment items.
   rpc ListEnvironment(QueryListEnvironmentRequest) returns (QueryListEnvironmentResponse) {
     option (google.api.http).get = "/overlock/crossplane/list_environment";
-  }
-
-  // Queries a list of ShowProvider items.
-  rpc ShowProvider(QueryShowProviderRequest) returns (QueryShowProviderResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_provider/{id}";
-  }
-
-  // Queries a list of ListProvider items.
-  rpc ListProvider(QueryListProviderRequest) returns (QueryListProviderResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_provider";
-  }
-
-  // Queries a list of ListFunction items.
-  rpc ListFunction(QueryListFunctionRequest) returns (QueryListFunctionResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_function";
-  }
-
-  // Queries a list of ShowFunction items.
-  rpc ShowFunction(QueryShowFunctionRequest) returns (QueryShowFunctionResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_function/{id}";
   }
 }
 
@@ -100,48 +56,6 @@ message QueryListConfigurationResponse {
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-// QueryListCompositionRequest
-message QueryListCompositionRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-// QueryListCompositionResponse
-message QueryListCompositionResponse {
-  repeated Composition compositions = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-// QueryShowCompositionRequest
-message QueryShowCompositionRequest {
-  uint64 id = 1;
-}
-
-// QueryShowCompositionResponse
-message QueryShowCompositionResponse {
-  Composition composition = 1 [(gogoproto.nullable) = false];
-}
-
-// QueryShowXrdRequest
-message QueryShowXrdRequest {
-  uint64 id = 1;
-}
-
-// QueryShowXrdResponse
-message QueryShowXrdResponse {
-  CompositeResourceDefinition xrd = 1 [(gogoproto.nullable) = false];
-}
-
-// QueryListXrdRequest
-message QueryListXrdRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-// QueryListXrdResponse
-message QueryListXrdResponse {
-  repeated CompositeResourceDefinition xrd = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
 // QueryShowEnvironmentRequest
 message QueryShowEnvironmentRequest {
   uint64 id = 1;
@@ -162,48 +76,4 @@ message QueryListEnvironmentRequest {
 message QueryListEnvironmentResponse {
   repeated Environment environments = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-// QueryShowProviderRequest
-message QueryShowProviderRequest {
-  uint64 id = 1;
-}
-
-// QueryShowProviderResponse
-message QueryShowProviderResponse {
-  Provider provider = 1;
-}
-
-// QueryListProviderRequest
-message QueryListProviderRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
-}
-
-// QueryListProviderResponse
-message QueryListProviderResponse {
-  repeated Provider providers = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-// QueryListFunctionRequest
-message QueryListFunctionRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
-}
-
-// QueryListFunctionResponse
-message QueryListFunctionResponse {
-  repeated Function functions = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-// QueryShowFunctionRequest
-message QueryShowFunctionRequest {
-  uint64 id = 1;
-}
-
-// QueryShowFunctionResponse
-message QueryShowFunctionResponse {
-  Function function = 1;
 }
