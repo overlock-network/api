@@ -14,15 +14,14 @@ message OCIRegistry {
   // metadata
   overlock.crossplane.v1beta1.Metadata metadata = 3;
   // spec
-  RegistrySpec spec = 4;
+  OCIRegistrySpec spec = 4;
 }
 
 // RegistrySpec
-message RegistrySpec {
+message OCIRegistrySpec {
   // url
   string url = 1;
-  // type
-  string type = 2;
+
   // provider
   string provider = 3;
 }

@@ -221,7 +221,7 @@ func (x *fastReflection_OCIRegistry) Set(fd protoreflect.FieldDescriptor, value 
 	case "overlock.storage.v1beta1.OCIRegistry.metadata":
 		x.Metadata = value.Message().Interface().(*v1beta1.Metadata)
 	case "overlock.storage.v1beta1.OCIRegistry.spec":
-		x.Spec = value.Message().Interface().(*RegistrySpec)
+		x.Spec = value.Message().Interface().(*OCIRegistrySpec)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistry"))
@@ -249,7 +249,7 @@ func (x *fastReflection_OCIRegistry) Mutable(fd protoreflect.FieldDescriptor) pr
 		return protoreflect.ValueOfMessage(x.Metadata.ProtoReflect())
 	case "overlock.storage.v1beta1.OCIRegistry.spec":
 		if x.Spec == nil {
-			x.Spec = new(RegistrySpec)
+			x.Spec = new(OCIRegistrySpec)
 		}
 		return protoreflect.ValueOfMessage(x.Spec.ProtoReflect())
 	case "overlock.storage.v1beta1.OCIRegistry.id":
@@ -277,7 +277,7 @@ func (x *fastReflection_OCIRegistry) NewField(fd protoreflect.FieldDescriptor) p
 		m := new(v1beta1.Metadata)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	case "overlock.storage.v1beta1.OCIRegistry.spec":
-		m := new(RegistrySpec)
+		m := new(OCIRegistrySpec)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
@@ -598,7 +598,7 @@ func (x *fastReflection_OCIRegistry) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				if x.Spec == nil {
-					x.Spec = &RegistrySpec{}
+					x.Spec = &OCIRegistrySpec{}
 				}
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Spec); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
@@ -640,29 +640,27 @@ func (x *fastReflection_OCIRegistry) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_RegistrySpec          protoreflect.MessageDescriptor
-	fd_RegistrySpec_url      protoreflect.FieldDescriptor
-	fd_RegistrySpec_type     protoreflect.FieldDescriptor
-	fd_RegistrySpec_provider protoreflect.FieldDescriptor
+	md_OCIRegistrySpec          protoreflect.MessageDescriptor
+	fd_OCIRegistrySpec_url      protoreflect.FieldDescriptor
+	fd_OCIRegistrySpec_provider protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_overlock_storage_v1beta1_oci_registry_proto_init()
-	md_RegistrySpec = File_overlock_storage_v1beta1_oci_registry_proto.Messages().ByName("RegistrySpec")
-	fd_RegistrySpec_url = md_RegistrySpec.Fields().ByName("url")
-	fd_RegistrySpec_type = md_RegistrySpec.Fields().ByName("type")
-	fd_RegistrySpec_provider = md_RegistrySpec.Fields().ByName("provider")
+	md_OCIRegistrySpec = File_overlock_storage_v1beta1_oci_registry_proto.Messages().ByName("OCIRegistrySpec")
+	fd_OCIRegistrySpec_url = md_OCIRegistrySpec.Fields().ByName("url")
+	fd_OCIRegistrySpec_provider = md_OCIRegistrySpec.Fields().ByName("provider")
 }
 
-var _ protoreflect.Message = (*fastReflection_RegistrySpec)(nil)
+var _ protoreflect.Message = (*fastReflection_OCIRegistrySpec)(nil)
 
-type fastReflection_RegistrySpec RegistrySpec
+type fastReflection_OCIRegistrySpec OCIRegistrySpec
 
-func (x *RegistrySpec) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_RegistrySpec)(x)
+func (x *OCIRegistrySpec) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_OCIRegistrySpec)(x)
 }
 
-func (x *RegistrySpec) slowProtoReflect() protoreflect.Message {
+func (x *OCIRegistrySpec) slowProtoReflect() protoreflect.Message {
 	mi := &file_overlock_storage_v1beta1_oci_registry_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -674,43 +672,43 @@ func (x *RegistrySpec) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_RegistrySpec_messageType fastReflection_RegistrySpec_messageType
-var _ protoreflect.MessageType = fastReflection_RegistrySpec_messageType{}
+var _fastReflection_OCIRegistrySpec_messageType fastReflection_OCIRegistrySpec_messageType
+var _ protoreflect.MessageType = fastReflection_OCIRegistrySpec_messageType{}
 
-type fastReflection_RegistrySpec_messageType struct{}
+type fastReflection_OCIRegistrySpec_messageType struct{}
 
-func (x fastReflection_RegistrySpec_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_RegistrySpec)(nil)
+func (x fastReflection_OCIRegistrySpec_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_OCIRegistrySpec)(nil)
 }
-func (x fastReflection_RegistrySpec_messageType) New() protoreflect.Message {
-	return new(fastReflection_RegistrySpec)
+func (x fastReflection_OCIRegistrySpec_messageType) New() protoreflect.Message {
+	return new(fastReflection_OCIRegistrySpec)
 }
-func (x fastReflection_RegistrySpec_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_RegistrySpec
+func (x fastReflection_OCIRegistrySpec_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_OCIRegistrySpec
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_RegistrySpec) Descriptor() protoreflect.MessageDescriptor {
-	return md_RegistrySpec
+func (x *fastReflection_OCIRegistrySpec) Descriptor() protoreflect.MessageDescriptor {
+	return md_OCIRegistrySpec
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_RegistrySpec) Type() protoreflect.MessageType {
-	return _fastReflection_RegistrySpec_messageType
+func (x *fastReflection_OCIRegistrySpec) Type() protoreflect.MessageType {
+	return _fastReflection_OCIRegistrySpec_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_RegistrySpec) New() protoreflect.Message {
-	return new(fastReflection_RegistrySpec)
+func (x *fastReflection_OCIRegistrySpec) New() protoreflect.Message {
+	return new(fastReflection_OCIRegistrySpec)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_RegistrySpec) Interface() protoreflect.ProtoMessage {
-	return (*RegistrySpec)(x)
+func (x *fastReflection_OCIRegistrySpec) Interface() protoreflect.ProtoMessage {
+	return (*OCIRegistrySpec)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -718,22 +716,16 @@ func (x *fastReflection_RegistrySpec) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_RegistrySpec) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_OCIRegistrySpec) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Url != "" {
 		value := protoreflect.ValueOfString(x.Url)
-		if !f(fd_RegistrySpec_url, value) {
-			return
-		}
-	}
-	if x.Type_ != "" {
-		value := protoreflect.ValueOfString(x.Type_)
-		if !f(fd_RegistrySpec_type, value) {
+		if !f(fd_OCIRegistrySpec_url, value) {
 			return
 		}
 	}
 	if x.Provider != "" {
 		value := protoreflect.ValueOfString(x.Provider)
-		if !f(fd_RegistrySpec_provider, value) {
+		if !f(fd_OCIRegistrySpec_provider, value) {
 			return
 		}
 	}
@@ -750,19 +742,17 @@ func (x *fastReflection_RegistrySpec) Range(f func(protoreflect.FieldDescriptor,
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_RegistrySpec) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_OCIRegistrySpec) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
 		return x.Url != ""
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		return x.Type_ != ""
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
 		return x.Provider != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -772,19 +762,17 @@ func (x *fastReflection_RegistrySpec) Has(fd protoreflect.FieldDescriptor) bool 
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_RegistrySpec) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_OCIRegistrySpec) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
 		x.Url = ""
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		x.Type_ = ""
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
 		x.Provider = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -794,22 +782,19 @@ func (x *fastReflection_RegistrySpec) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_RegistrySpec) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_OCIRegistrySpec) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
 		value := x.Url
 		return protoreflect.ValueOfString(value)
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		value := x.Type_
-		return protoreflect.ValueOfString(value)
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
 		value := x.Provider
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -823,19 +808,17 @@ func (x *fastReflection_RegistrySpec) Get(descriptor protoreflect.FieldDescripto
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_RegistrySpec) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_OCIRegistrySpec) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
 		x.Url = value.Interface().(string)
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		x.Type_ = value.Interface().(string)
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
 		x.Provider = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -849,48 +832,44 @@ func (x *fastReflection_RegistrySpec) Set(fd protoreflect.FieldDescriptor, value
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_RegistrySpec) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_OCIRegistrySpec) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
-		panic(fmt.Errorf("field url of message overlock.storage.v1beta1.RegistrySpec is not mutable"))
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		panic(fmt.Errorf("field type of message overlock.storage.v1beta1.RegistrySpec is not mutable"))
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
-		panic(fmt.Errorf("field provider of message overlock.storage.v1beta1.RegistrySpec is not mutable"))
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
+		panic(fmt.Errorf("field url of message overlock.storage.v1beta1.OCIRegistrySpec is not mutable"))
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
+		panic(fmt.Errorf("field provider of message overlock.storage.v1beta1.OCIRegistrySpec is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_RegistrySpec) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_OCIRegistrySpec) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overlock.storage.v1beta1.RegistrySpec.url":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.url":
 		return protoreflect.ValueOfString("")
-	case "overlock.storage.v1beta1.RegistrySpec.type":
-		return protoreflect.ValueOfString("")
-	case "overlock.storage.v1beta1.RegistrySpec.provider":
+	case "overlock.storage.v1beta1.OCIRegistrySpec.provider":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.RegistrySpec"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.storage.v1beta1.OCIRegistrySpec"))
 		}
-		panic(fmt.Errorf("message overlock.storage.v1beta1.RegistrySpec does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overlock.storage.v1beta1.OCIRegistrySpec does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_RegistrySpec) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_OCIRegistrySpec) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overlock.storage.v1beta1.RegistrySpec", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overlock.storage.v1beta1.OCIRegistrySpec", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -898,7 +877,7 @@ func (x *fastReflection_RegistrySpec) WhichOneof(d protoreflect.OneofDescriptor)
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_RegistrySpec) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_OCIRegistrySpec) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -909,7 +888,7 @@ func (x *fastReflection_RegistrySpec) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_RegistrySpec) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_OCIRegistrySpec) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -921,7 +900,7 @@ func (x *fastReflection_RegistrySpec) SetUnknown(fields protoreflect.RawFields) 
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_RegistrySpec) IsValid() bool {
+func (x *fastReflection_OCIRegistrySpec) IsValid() bool {
 	return x != nil
 }
 
@@ -931,9 +910,9 @@ func (x *fastReflection_RegistrySpec) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_OCIRegistrySpec) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*RegistrySpec)
+		x := input.Message.Interface().(*OCIRegistrySpec)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -946,10 +925,6 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 		var l int
 		_ = l
 		l = len(x.Url)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		l = len(x.Type_)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -967,7 +942,7 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*RegistrySpec)
+		x := input.Message.Interface().(*OCIRegistrySpec)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -993,13 +968,6 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x1a
 		}
-		if len(x.Type_) > 0 {
-			i -= len(x.Type_)
-			copy(dAtA[i:], x.Type_)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Type_)))
-			i--
-			dAtA[i] = 0x12
-		}
 		if len(x.Url) > 0 {
 			i -= len(x.Url)
 			copy(dAtA[i:], x.Url)
@@ -1018,7 +986,7 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*RegistrySpec)
+		x := input.Message.Interface().(*OCIRegistrySpec)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1050,10 +1018,10 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: RegistrySpec: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: OCIRegistrySpec: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: RegistrySpec: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: OCIRegistrySpec: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1087,38 +1055,6 @@ func (x *fastReflection_RegistrySpec) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.Url = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Type_", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Type_ = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 3:
 				if wireType != 2 {
@@ -1213,7 +1149,7 @@ type OCIRegistry struct {
 	// metadata
 	Metadata *v1beta1.Metadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// spec
-	Spec *RegistrySpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *OCIRegistrySpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
 }
 
 func (x *OCIRegistry) Reset() {
@@ -1257,7 +1193,7 @@ func (x *OCIRegistry) GetMetadata() *v1beta1.Metadata {
 	return nil
 }
 
-func (x *OCIRegistry) GetSpec() *RegistrySpec {
+func (x *OCIRegistry) GetSpec() *OCIRegistrySpec {
 	if x != nil {
 		return x.Spec
 	}
@@ -1265,21 +1201,19 @@ func (x *OCIRegistry) GetSpec() *RegistrySpec {
 }
 
 // RegistrySpec
-type RegistrySpec struct {
+type OCIRegistrySpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// url
 	Url string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	// type
-	Type_ string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	// provider
 	Provider string `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
 }
 
-func (x *RegistrySpec) Reset() {
-	*x = RegistrySpec{}
+func (x *OCIRegistrySpec) Reset() {
+	*x = OCIRegistrySpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_overlock_storage_v1beta1_oci_registry_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1287,32 +1221,25 @@ func (x *RegistrySpec) Reset() {
 	}
 }
 
-func (x *RegistrySpec) String() string {
+func (x *OCIRegistrySpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegistrySpec) ProtoMessage() {}
+func (*OCIRegistrySpec) ProtoMessage() {}
 
-// Deprecated: Use RegistrySpec.ProtoReflect.Descriptor instead.
-func (*RegistrySpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use OCIRegistrySpec.ProtoReflect.Descriptor instead.
+func (*OCIRegistrySpec) Descriptor() ([]byte, []int) {
 	return file_overlock_storage_v1beta1_oci_registry_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RegistrySpec) GetUrl() string {
+func (x *OCIRegistrySpec) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
 	return ""
 }
 
-func (x *RegistrySpec) GetType_() string {
-	if x != nil {
-		return x.Type_
-	}
-	return ""
-}
-
-func (x *RegistrySpec) GetProvider() string {
+func (x *OCIRegistrySpec) GetProvider() string {
 	if x != nil {
 		return x.Provider
 	}
@@ -1329,7 +1256,7 @@ var file_overlock_storage_v1beta1_oci_registry_proto_rawDesc = []byte{
 	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x1a, 0x2a, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63,
 	0x6b, 0x2f, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62,
 	0x65, 0x74, 0x61, 0x31, 0x2f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x22, 0xb6, 0x01, 0x0a, 0x0b, 0x4f, 0x43, 0x49, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x6f, 0x74, 0x6f, 0x22, 0xb9, 0x01, 0x0a, 0x0b, 0x4f, 0x43, 0x49, 0x52, 0x65, 0x67, 0x69, 0x73,
 	0x74, 0x72, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
 	0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x41, 0x0a,
@@ -1337,32 +1264,31 @@ var file_overlock_storage_v1beta1_oci_registry_proto_rawDesc = []byte{
 	0x25, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x73,
 	0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x65,
 	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0x12, 0x3a, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26,
+	0x12, 0x3d, 0x0a, 0x04, 0x73, 0x70, 0x65, 0x63, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x29,
 	0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67,
-	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
-	0x72, 0x79, 0x53, 0x70, 0x65, 0x63, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x22, 0x50, 0x0a, 0x0c,
-	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x53, 0x70, 0x65, 0x63, 0x12, 0x10, 0x0a, 0x03,
-	0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x12,
-	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79,
-	0x70, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x84,
-	0x02, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e,
-	0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42,
-	0x10, 0x4f, 0x63, 0x69, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x50, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x77, 0x65, 0x62, 0x2d, 0x73, 0x65, 0x76, 0x65, 0x6e, 0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f,
-	0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2f, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x2f, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02, 0x03, 0x4f, 0x53, 0x58, 0xaa, 0x02, 0x18, 0x4f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x56,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x18, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63,
-	0x6b, 0x5c, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0xe2, 0x02, 0x24, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x53, 0x74, 0x6f,
-	0x72, 0x61, 0x67, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1a, 0x4f, 0x76, 0x65, 0x72, 0x6c,
-	0x6f, 0x63, 0x6b, 0x3a, 0x3a, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x3a, 0x3a, 0x56, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4f, 0x43, 0x49, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x72, 0x79, 0x53, 0x70, 0x65, 0x63, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x22,
+	0x3f, 0x0a, 0x0f, 0x4f, 0x43, 0x49, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x53, 0x70,
+	0x65, 0x63, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x75, 0x72, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72,
+	0x42, 0x84, 0x02, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63,
+	0x6b, 0x2e, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
+	0x31, 0x42, 0x10, 0x4f, 0x63, 0x69, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x79, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x50, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x77, 0x65, 0x62, 0x2d, 0x73, 0x65, 0x76, 0x65, 0x6e, 0x2f, 0x6f, 0x76, 0x65, 0x72,
+	0x6c, 0x6f, 0x63, 0x6b, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2f, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65,
+	0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x73, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02, 0x03, 0x4f, 0x53, 0x58, 0xaa, 0x02, 0x18,
+	0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65,
+	0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x18, 0x4f, 0x76, 0x65, 0x72, 0x6c,
+	0x6f, 0x63, 0x6b, 0x5c, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65,
+	0x74, 0x61, 0x31, 0xe2, 0x02, 0x24, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x53,
+	0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1a, 0x4f, 0x76, 0x65,
+	0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x3a, 0x3a, 0x53, 0x74, 0x6f, 0x72, 0x61, 0x67, 0x65, 0x3a, 0x3a,
+	0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1380,12 +1306,12 @@ func file_overlock_storage_v1beta1_oci_registry_proto_rawDescGZIP() []byte {
 var file_overlock_storage_v1beta1_oci_registry_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_overlock_storage_v1beta1_oci_registry_proto_goTypes = []interface{}{
 	(*OCIRegistry)(nil),      // 0: overlock.storage.v1beta1.OCIRegistry
-	(*RegistrySpec)(nil),     // 1: overlock.storage.v1beta1.RegistrySpec
+	(*OCIRegistrySpec)(nil),  // 1: overlock.storage.v1beta1.OCIRegistrySpec
 	(*v1beta1.Metadata)(nil), // 2: overlock.crossplane.v1beta1.Metadata
 }
 var file_overlock_storage_v1beta1_oci_registry_proto_depIdxs = []int32{
 	2, // 0: overlock.storage.v1beta1.OCIRegistry.metadata:type_name -> overlock.crossplane.v1beta1.Metadata
-	1, // 1: overlock.storage.v1beta1.OCIRegistry.spec:type_name -> overlock.storage.v1beta1.RegistrySpec
+	1, // 1: overlock.storage.v1beta1.OCIRegistry.spec:type_name -> overlock.storage.v1beta1.OCIRegistrySpec
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -1412,7 +1338,7 @@ func file_overlock_storage_v1beta1_oci_registry_proto_init() {
 			}
 		}
 		file_overlock_storage_v1beta1_oci_registry_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegistrySpec); i {
+			switch v := v.(*OCIRegistrySpec); i {
 			case 0:
 				return &v.state
 			case 1:
