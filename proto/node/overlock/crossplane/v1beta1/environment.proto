@@ -10,26 +10,9 @@ message Environment {
   // metadata
   Metadata metadata = 1;
 
-  // spec
-  EnvironmentSpec spec = 2;
-
   // id
-  uint64 id = 5;
+  uint64 id = 2;
 
   // creator
-  string creator = 6;
-}
-
-// Spec defines the specification of the environment.
-message EnvironmentSpec {
-  // providers
-  repeated uint64 providers = 2;
-
-  // configurations
-  repeated uint64 configurations = 3;
-
-  // functions
-  repeated uint64 functions = 4;
-
-  repeated uint64 registries = 5;
+  string creator = 3;
 }
