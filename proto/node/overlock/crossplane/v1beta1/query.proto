@@ -8,6 +8,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
+import "overlock/crossplane/v1beta1/provider.proto";
 
 option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
 
@@ -31,6 +32,16 @@ service Query {
   // Queries a list of ListEnvironment items.
   rpc ListEnvironment(QueryListEnvironmentRequest) returns (QueryListEnvironmentResponse) {
     option (google.api.http).get = "/overlock/crossplane/list_environment";
+  }
+
+  // Queries a list of ShowProvider items.
+  rpc ShowProvider(QueryShowProviderRequest) returns (QueryShowProviderResponse) {
+    option (google.api.http).get = "/overlock/crossplane/show_Provider/{id}";
+  }
+
+  // Queries a list of ListProvider items.
+  rpc ListProvider(QueryListProviderRequest) returns (QueryListProviderResponse) {
+    option (google.api.http).get = "/overlock/crossplane/list_Provider";
   }
 }
 
@@ -75,5 +86,27 @@ message QueryListEnvironmentRequest {
 // QueryListEnvironmentResponse
 message QueryListEnvironmentResponse {
   repeated Environment environments = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryShowProviderRequest
+message QueryShowProviderRequest {
+  uint64 id = 1;
+}
+
+// QueryShowProviderResponse
+message QueryShowProviderResponse {
+  Provider Provider = 1;
+}
+
+// QueryListProviderRequest
+message QueryListProviderRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string creator = 2;
+}
+
+// QueryListProviderResponse
+message QueryListProviderResponse {
+  repeated Provider Providers = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
