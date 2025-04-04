@@ -10,6 +10,10 @@ proto-gen-swagger:
 proto-gen-pulsar: 
 	./script/protoc-gen-pulsar.sh
 
+.PHONY: proto-gen-ts
+proto-gen-ts: 
+	./script/protoc-gen-ts.sh
+
 .PHONY: codegen
-codegen: proto-gen-go proto-gen-swagger proto-gen-pulsar
+codegen: proto-gen-go proto-gen-swagger proto-gen-pulsar proto-gen-ts
 
