@@ -33,6 +33,8 @@ message ConfigurationSpec {
   repeated uint64 configurations = 7;
 
   string package = 8;
+
+  string aes_key = 9;
 }
 
 // Crossplane specs.

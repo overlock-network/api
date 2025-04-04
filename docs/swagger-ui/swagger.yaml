@@ -329,6 +329,8 @@ paths:
                           title: configurations
                         package:
                           type: string
+                        aes_key:
+                          type: string
                       description: Spec defines the specification of the composition.
                     creator:
                       type: string
@@ -1314,6 +1316,8 @@ paths:
                         title: configurations
                       package:
                         type: string
+                      aes_key:
+                        type: string
                     description: Spec defines the specification of the composition.
                   creator:
                     type: string
@@ -2195,6 +2199,8 @@ definitions:
             title: configurations
           package:
             type: string
+          aes_key:
+            type: string
         description: Spec defines the specification of the composition.
       creator:
         type: string
@@ -2239,6 +2245,8 @@ definitions:
           format: uint64
         title: configurations
       package:
+        type: string
+      aes_key:
         type: string
     description: Spec defines the specification of the composition.
   v1beta1ConvertTransform:
@@ -2837,6 +2845,8 @@ definitions:
                   title: configurations
                 package:
                   type: string
+                aes_key:
+                  type: string
               description: Spec defines the specification of the composition.
             creator:
               type: string
@@ -3338,6 +3348,8 @@ definitions:
                   format: uint64
                 title: configurations
               package:
+                type: string
+              aes_key:
                 type: string
             description: Spec defines the specification of the composition.
           creator:
