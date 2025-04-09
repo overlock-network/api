@@ -35,8 +35,6 @@ message ConfigurationSpec {
   string package = 8;
 
   string aes_key = 9;
-
-  string token = 10;
 }
 
 // Crossplane specs.
