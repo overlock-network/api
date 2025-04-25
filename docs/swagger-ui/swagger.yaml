@@ -172,6 +172,20 @@ paths:
                         annotations:
                           type: string
                       description: Metadata contains metadata information.
+                    spec:
+                      type: object
+                      properties:
+                        crossplane:
+                          type: object
+                          properties:
+                            version:
+                              type: string
+                          description: Crossplane specs.
+                        package:
+                          type: string
+                        aes_key:
+                          type: string
+                      description: Spec defines the specification of the composition.
                     creator:
                       type: string
                   description: Configuration holds the configuration details.
@@ -508,6 +522,20 @@ paths:
                       annotations:
                         type: string
                     description: Metadata contains metadata information.
+                  spec:
+                    type: object
+                    properties:
+                      crossplane:
+                        type: object
+                        properties:
+                          version:
+                            type: string
+                        description: Crossplane specs.
+                      package:
+                        type: string
+                      aes_key:
+                        type: string
+                    description: Spec defines the specification of the composition.
                   creator:
                     type: string
                 description: Configuration holds the configuration details.
@@ -811,9 +839,43 @@ definitions:
           annotations:
             type: string
         description: Metadata contains metadata information.
+      spec:
+        type: object
+        properties:
+          crossplane:
+            type: object
+            properties:
+              version:
+                type: string
+            description: Crossplane specs.
+          package:
+            type: string
+          aes_key:
+            type: string
+        description: Spec defines the specification of the composition.
       creator:
         type: string
     description: Configuration holds the configuration details.
+  v1beta1ConfigurationSpec:
+    type: object
+    properties:
+      crossplane:
+        type: object
+        properties:
+          version:
+            type: string
+        description: Crossplane specs.
+      package:
+        type: string
+      aes_key:
+        type: string
+    description: Spec defines the specification of the composition.
+  v1beta1CrossplaneSpec:
+    type: object
+    properties:
+      version:
+        type: string
+    description: Crossplane specs.
   v1beta1Environment:
     type: object
     properties:
@@ -958,6 +1020,20 @@ definitions:
                 annotations:
                   type: string
               description: Metadata contains metadata information.
+            spec:
+              type: object
+              properties:
+                crossplane:
+                  type: object
+                  properties:
+                    version:
+                      type: string
+                  description: Crossplane specs.
+                package:
+                  type: string
+                aes_key:
+                  type: string
+              description: Spec defines the specification of the composition.
             creator:
               type: string
           description: Configuration holds the configuration details.
@@ -1109,6 +1185,20 @@ definitions:
               annotations:
                 type: string
             description: Metadata contains metadata information.
+          spec:
+            type: object
+            properties:
+              crossplane:
+                type: object
+                properties:
+                  version:
+                    type: string
+                description: Crossplane specs.
+              package:
+                type: string
+              aes_key:
+                type: string
+            description: Spec defines the specification of the composition.
           creator:
             type: string
         description: Configuration holds the configuration details.

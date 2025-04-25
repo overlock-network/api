@@ -8,11 +8,10 @@ import (
 
 var _ sdk.Msg = &MsgCreateConfiguration{}
 
-func NewMsgCreateConfiguration(creator string, metadata *Metadata, spec *ConfigurationSpec) *MsgCreateConfiguration {
+func NewMsgCreateConfiguration(creator string, metadata *Metadata) *MsgCreateConfiguration {
 	return &MsgCreateConfiguration{
 		Creator:  creator,
 		Metadata: metadata,
-		Spec:     spec,
 	}
 }
 

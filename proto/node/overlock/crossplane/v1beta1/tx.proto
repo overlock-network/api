@@ -49,6 +49,7 @@ message MsgCreateConfiguration {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   Metadata metadata = 4;
+  ConfigurationSpec spec = 5;
 }
 
 // MsgCreateConfigurationResponse
@@ -62,6 +63,7 @@ message MsgUpdateConfiguration {
   string creator = 1;
   uint64 id = 2;
   Metadata metadata = 5;
+  ConfigurationSpec spec = 6;
 }
 
 // MsgUpdateConfigurationResponse
