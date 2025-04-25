@@ -5,7 +5,7 @@ import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "overlock/storage/v1beta1/params.proto";
 
-option go_package = "github.com/web-seven/overlock-api/go/node/overlock/storage/v1beta1";
+option go_package = "github.com/overlock-network/api/go/node/overlock/storage/v1beta1";
 
 // GenesisState defines the storage module's genesis state.
 message GenesisState {

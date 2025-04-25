@@ -8,7 +8,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "overlock/storage/v1beta1/registry.proto";
 
-option go_package = "github.com/web-seven/overlock-api/go/node/overlock/storage/v1beta1";
+option go_package = "github.com/overlock-network/api/go/node/overlock/storage/v1beta1";
 
 // Query defines the gRPC querier service.
 service Query {

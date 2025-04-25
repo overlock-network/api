@@ -1,10 +1,12 @@
 //@ts-nocheck
 import { Metadata, MetadataAmino, MetadataSDKType } from "./metadata";
+import { ConfigurationSpec, ConfigurationSpecAmino, ConfigurationSpecSDKType } from "./configuration";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** MsgCreateConfiguration */
 export interface MsgCreateConfiguration {
   creator: string;
   metadata?: Metadata;
+  spec?: ConfigurationSpec;
 }
 export interface MsgCreateConfigurationProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgCreateConfiguration";
@@ -14,6 +16,7 @@ export interface MsgCreateConfigurationProtoMsg {
 export interface MsgCreateConfigurationAmino {
   creator?: string;
   metadata?: MetadataAmino;
+  spec?: ConfigurationSpecAmino;
 }
 export interface MsgCreateConfigurationAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgCreateConfiguration";
@@ -23,6 +26,7 @@ export interface MsgCreateConfigurationAminoMsg {
 export interface MsgCreateConfigurationSDKType {
   creator: string;
   metadata?: MetadataSDKType;
+  spec?: ConfigurationSpecSDKType;
 }
 /** MsgCreateConfigurationResponse */
 export interface MsgCreateConfigurationResponse {
@@ -49,6 +53,7 @@ export interface MsgUpdateConfiguration {
   creator: string;
   id: bigint;
   metadata?: Metadata;
+  spec?: ConfigurationSpec;
 }
 export interface MsgUpdateConfigurationProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration";
@@ -59,6 +64,7 @@ export interface MsgUpdateConfigurationAmino {
   creator?: string;
   id?: string;
   metadata?: MetadataAmino;
+  spec?: ConfigurationSpecAmino;
 }
 export interface MsgUpdateConfigurationAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration";
@@ -69,6 +75,7 @@ export interface MsgUpdateConfigurationSDKType {
   creator: string;
   id: bigint;
   metadata?: MetadataSDKType;
+  spec?: ConfigurationSpecSDKType;
 }
 /** MsgUpdateConfigurationResponse */
 export interface MsgUpdateConfigurationResponse {}
@@ -376,7 +383,8 @@ export interface MsgDeleteProviderResponseSDKType {}
 function createBaseMsgCreateConfiguration(): MsgCreateConfiguration {
   return {
     creator: "",
-    metadata: undefined
+    metadata: undefined,
+    spec: undefined
   };
 }
 export const MsgCreateConfiguration = {
@@ -387,6 +395,9 @@ export const MsgCreateConfiguration = {
     }
     if (message.metadata !== undefined) {
       Metadata.encode(message.metadata, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.spec !== undefined) {
+      ConfigurationSpec.encode(message.spec, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -403,6 +414,9 @@ export const MsgCreateConfiguration = {
         case 4:
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
+        case 5:
+          message.spec = ConfigurationSpec.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -414,6 +428,7 @@ export const MsgCreateConfiguration = {
     const message = createBaseMsgCreateConfiguration();
     message.creator = object.creator ?? "";
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.spec = object.spec !== undefined && object.spec !== null ? ConfigurationSpec.fromPartial(object.spec) : undefined;
     return message;
   },
   fromAmino(object: MsgCreateConfigurationAmino): MsgCreateConfiguration {
@@ -424,12 +439,16 @@ export const MsgCreateConfiguration = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.spec !== undefined && object.spec !== null) {
+      message.spec = ConfigurationSpec.fromAmino(object.spec);
+    }
     return message;
   },
   toAmino(message: MsgCreateConfiguration): MsgCreateConfigurationAmino {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.spec = message.spec ? ConfigurationSpec.toAmino(message.spec) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgCreateConfigurationAminoMsg): MsgCreateConfiguration {
@@ -515,7 +534,8 @@ function createBaseMsgUpdateConfiguration(): MsgUpdateConfiguration {
   return {
     creator: "",
     id: BigInt(0),
-    metadata: undefined
+    metadata: undefined,
+    spec: undefined
   };
 }
 export const MsgUpdateConfiguration = {
@@ -529,6 +549,9 @@ export const MsgUpdateConfiguration = {
     }
     if (message.metadata !== undefined) {
       Metadata.encode(message.metadata, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.spec !== undefined) {
+      ConfigurationSpec.encode(message.spec, writer.uint32(50).fork()).ldelim();
     }
     return writer;
   },
@@ -548,6 +571,9 @@ export const MsgUpdateConfiguration = {
         case 5:
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
+        case 6:
+          message.spec = ConfigurationSpec.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -560,6 +586,7 @@ export const MsgUpdateConfiguration = {
     message.creator = object.creator ?? "";
     message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.spec = object.spec !== undefined && object.spec !== null ? ConfigurationSpec.fromPartial(object.spec) : undefined;
     return message;
   },
   fromAmino(object: MsgUpdateConfigurationAmino): MsgUpdateConfiguration {
@@ -573,6 +600,9 @@ export const MsgUpdateConfiguration = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.spec !== undefined && object.spec !== null) {
+      message.spec = ConfigurationSpec.fromAmino(object.spec);
+    }
     return message;
   },
   toAmino(message: MsgUpdateConfiguration): MsgUpdateConfigurationAmino {
@@ -580,6 +610,7 @@ export const MsgUpdateConfiguration = {
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.spec = message.spec ? ConfigurationSpec.toAmino(message.spec) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateConfigurationAminoMsg): MsgUpdateConfiguration {

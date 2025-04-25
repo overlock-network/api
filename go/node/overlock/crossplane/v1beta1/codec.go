@@ -18,24 +18,6 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgDeleteConfiguration{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateComposition{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateComposition{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteComposition{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateXrd{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateXrd{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteXrd{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateConfiguration{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
@@ -61,15 +43,6 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgDeleteProvider{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateFunction{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateFunction{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteFunction{},
 	)
 	// this line is used by starport scaffolding # 3
 
