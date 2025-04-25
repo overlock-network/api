@@ -7,7 +7,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/web-seven/overlock-api/go/api
+    default: github.com/overlock-network/api/go/api
     except:
       - buf.build/googleapis/googleapis
       - buf.build/cosmos/gogo-proto

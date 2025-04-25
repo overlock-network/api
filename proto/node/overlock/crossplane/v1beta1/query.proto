@@ -10,7 +10,7 @@ import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
 import "overlock/crossplane/v1beta1/provider.proto";
 
-option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
+option go_package = "github.com/overlock-network/api/go/node/overlock/crossplane/v1beta1";
 
 // Query defines the gRPC querier service.
 service Query {

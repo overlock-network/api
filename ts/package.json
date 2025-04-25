@@ -6,17 +6,17 @@
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/web-seven/overlock-api",
+  "homepage": "https://github.com/overlock-network/api",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-seven/overlock-api"
+    "url": "https://github.com/overlock-network/api"
   },
   "bugs": {
-    "url": "https://github.com/web-seven/overlock-api/issues"
+    "url": "https://github.com/overlock-network/api/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README ./dist",

@@ -3,7 +3,7 @@ package overlock.crossplane.v1beta1;
 
 import "overlock/crossplane/v1beta1/metadata.proto";
 
-option go_package = "github.com/web-seven/overlock-api/go/node/overlock/crossplane/v1beta1";
+option go_package = "github.com/overlock-network/api/go/node/overlock/crossplane/v1beta1";
 
 // Provider
 message Provider {

@@ -7,6 +7,6 @@ for dir in $proto_dirs; do
     done <  <(find "${dir}" -maxdepth 1 -name '*.proto' -print0)
 done
 
-cp -r go/github.com/web-seven/overlock-api/* ./
+cp -r go/github.com/overlock-network/api/* ./
 rm -r go/github.com
 

@@ -1,4 +1,4 @@
-module github.com/web-seven/overlock-api
+module github.com/overlock-network/api
 
 go 1.24.0
 
