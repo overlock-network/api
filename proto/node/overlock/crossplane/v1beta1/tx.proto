@@ -6,6 +6,7 @@ import "amino/amino.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
 import "overlock/crossplane/v1beta1/metadata.proto";
@@ -120,7 +121,13 @@ message MsgDeleteEnvironmentResponse {}
 message MsgCreateProvider {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
-  Metadata metadata = 3;
+  Metadata metadata = 2;
+  string ip = 3;
+  uint32 port = 4;
+  string country_code = 5;
+  string environment_type = 6;
+  string availability = 7;
+  google.protobuf.Timestamp register_time = 8 [(gogoproto.stdtime) = true];
 }
 
 // MsgCreateProviderResponse
@@ -134,6 +141,12 @@ message MsgUpdateProvider {
   string creator = 1;
   uint64 id = 2;
   Metadata metadata = 3;
+  string ip = 4;
+  uint32 port = 5;
+  string country_code = 6;
+  string environment_type = 7;
+  string availability = 8;
+  google.protobuf.Timestamp register_time = 9 [(gogoproto.stdtime) = true];
 }
 
 // MsgUpdateProviderResponse
