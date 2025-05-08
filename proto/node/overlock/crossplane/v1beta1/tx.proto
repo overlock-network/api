@@ -84,6 +84,7 @@ message MsgCreateEnvironment {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   Metadata metadata = 3;
+  uint64 provider = 4;
 }
 
 // MsgCreateEnvironmentResponse
@@ -97,6 +98,7 @@ message MsgUpdateEnvironment {
   string creator = 1;
   uint64 id = 2;
   Metadata metadata = 3;
+  uint64 provider = 4;
 }
 
 // MsgUpdateEnvironmentResponse

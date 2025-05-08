@@ -330,6 +330,10 @@ paths:
                     creator:
                       type: string
                       title: creator
+                    provider:
+                      type: string
+                      format: uint64
+                      title: provider
                   title: Environment
               pagination:
                 type: object
@@ -595,6 +599,10 @@ paths:
                   creator:
                     type: string
                     title: creator
+                  provider:
+                    type: string
+                    format: uint64
+                    title: provider
                 title: Environment
             title: QueryShowEnvironmentResponse
         default:
@@ -895,6 +903,10 @@ definitions:
       creator:
         type: string
         title: creator
+      provider:
+        type: string
+        format: uint64
+        title: provider
     title: Environment
   v1beta1Metadata:
     type: object
@@ -1088,6 +1100,10 @@ definitions:
             creator:
               type: string
               title: creator
+            provider:
+              type: string
+              format: uint64
+              title: provider
           title: Environment
       pagination:
         type: object
@@ -1225,6 +1241,10 @@ definitions:
           creator:
             type: string
             title: creator
+          provider:
+            type: string
+            format: uint64
+            title: provider
         title: Environment
     title: QueryShowEnvironmentResponse
   v1beta1QueryShowProviderResponse:

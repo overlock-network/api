@@ -15,4 +15,7 @@ message Environment {
 
   // creator
   string creator = 3;
+
+  // provider
+  uint64 provider = 4;
 }

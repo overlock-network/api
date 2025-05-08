@@ -132,6 +132,7 @@ export interface MsgDeleteConfigurationResponseSDKType {}
 export interface MsgCreateEnvironment {
   creator: string;
   metadata?: Metadata;
+  provider: bigint;
 }
 export interface MsgCreateEnvironmentProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgCreateEnvironment";
@@ -141,6 +142,7 @@ export interface MsgCreateEnvironmentProtoMsg {
 export interface MsgCreateEnvironmentAmino {
   creator?: string;
   metadata?: MetadataAmino;
+  provider?: string;
 }
 export interface MsgCreateEnvironmentAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgCreateEnvironment";
@@ -150,6 +152,7 @@ export interface MsgCreateEnvironmentAminoMsg {
 export interface MsgCreateEnvironmentSDKType {
   creator: string;
   metadata?: MetadataSDKType;
+  provider: bigint;
 }
 /** MsgCreateEnvironmentResponse */
 export interface MsgCreateEnvironmentResponse {
@@ -176,6 +179,7 @@ export interface MsgUpdateEnvironment {
   creator: string;
   id: bigint;
   metadata?: Metadata;
+  provider: bigint;
 }
 export interface MsgUpdateEnvironmentProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateEnvironment";
@@ -186,6 +190,7 @@ export interface MsgUpdateEnvironmentAmino {
   creator?: string;
   id?: string;
   metadata?: MetadataAmino;
+  provider?: string;
 }
 export interface MsgUpdateEnvironmentAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgUpdateEnvironment";
@@ -196,6 +201,7 @@ export interface MsgUpdateEnvironmentSDKType {
   creator: string;
   id: bigint;
   metadata?: MetadataSDKType;
+  provider: bigint;
 }
 /** MsgUpdateEnvironmentResponse */
 export interface MsgUpdateEnvironmentResponse {
@@ -807,7 +813,8 @@ export const MsgDeleteConfigurationResponse = {
 function createBaseMsgCreateEnvironment(): MsgCreateEnvironment {
   return {
     creator: "",
-    metadata: undefined
+    metadata: undefined,
+    provider: BigInt(0)
   };
 }
 export const MsgCreateEnvironment = {
@@ -818,6 +825,9 @@ export const MsgCreateEnvironment = {
     }
     if (message.metadata !== undefined) {
       Metadata.encode(message.metadata, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.provider !== BigInt(0)) {
+      writer.uint32(32).uint64(message.provider);
     }
     return writer;
   },
@@ -834,6 +844,9 @@ export const MsgCreateEnvironment = {
         case 3:
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
+        case 4:
+          message.provider = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -845,6 +858,7 @@ export const MsgCreateEnvironment = {
     const message = createBaseMsgCreateEnvironment();
     message.creator = object.creator ?? "";
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.provider = object.provider !== undefined && object.provider !== null ? BigInt(object.provider.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: MsgCreateEnvironmentAmino): MsgCreateEnvironment {
@@ -855,12 +869,16 @@ export const MsgCreateEnvironment = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.provider !== undefined && object.provider !== null) {
+      message.provider = BigInt(object.provider);
+    }
     return message;
   },
   toAmino(message: MsgCreateEnvironment): MsgCreateEnvironmentAmino {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.provider = message.provider !== BigInt(0) ? message.provider?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgCreateEnvironmentAminoMsg): MsgCreateEnvironment {
@@ -946,7 +964,8 @@ function createBaseMsgUpdateEnvironment(): MsgUpdateEnvironment {
   return {
     creator: "",
     id: BigInt(0),
-    metadata: undefined
+    metadata: undefined,
+    provider: BigInt(0)
   };
 }
 export const MsgUpdateEnvironment = {
@@ -960,6 +979,9 @@ export const MsgUpdateEnvironment = {
     }
     if (message.metadata !== undefined) {
       Metadata.encode(message.metadata, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.provider !== BigInt(0)) {
+      writer.uint32(32).uint64(message.provider);
     }
     return writer;
   },
@@ -979,6 +1001,9 @@ export const MsgUpdateEnvironment = {
         case 3:
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
+        case 4:
+          message.provider = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -991,6 +1016,7 @@ export const MsgUpdateEnvironment = {
     message.creator = object.creator ?? "";
     message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.provider = object.provider !== undefined && object.provider !== null ? BigInt(object.provider.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: MsgUpdateEnvironmentAmino): MsgUpdateEnvironment {
@@ -1004,6 +1030,9 @@ export const MsgUpdateEnvironment = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.provider !== undefined && object.provider !== null) {
+      message.provider = BigInt(object.provider);
+    }
     return message;
   },
   toAmino(message: MsgUpdateEnvironment): MsgUpdateEnvironmentAmino {
@@ -1011,6 +1040,7 @@ export const MsgUpdateEnvironment = {
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.provider = message.provider !== BigInt(0) ? message.provider?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateEnvironmentAminoMsg): MsgUpdateEnvironment {
