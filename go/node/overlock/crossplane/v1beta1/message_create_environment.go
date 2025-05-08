@@ -8,10 +8,11 @@ import (
 
 var _ sdk.Msg = &MsgCreateEnvironment{}
 
-func NewMsgCreateEnvironment(creator string, metadata Metadata) *MsgCreateEnvironment {
+func NewMsgCreateEnvironment(creator string, metadata Metadata, provider uint64) *MsgCreateEnvironment {
 	return &MsgCreateEnvironment{
 		Creator:  creator,
 		Metadata: &metadata,
+		Provider: provider,
 	}
 }
 

@@ -337,6 +337,7 @@ var xxx_messageInfo_MsgDeleteConfigurationResponse proto.InternalMessageInfo
 type MsgCreateEnvironment struct {
 	Creator  string    `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
 	Metadata *Metadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Provider uint64    `protobuf:"varint,4,opt,name=provider,proto3" json:"provider,omitempty"`
 }
 
 func (m *MsgCreateEnvironment) Reset()         { *m = MsgCreateEnvironment{} }
@@ -436,6 +437,7 @@ type MsgUpdateEnvironment struct {
 	Creator  string    `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
 	Id       uint64    `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
 	Metadata *Metadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Provider uint64    `protobuf:"varint,4,opt,name=provider,proto3" json:"provider,omitempty"`
 }
 
 func (m *MsgUpdateEnvironment) Reset()         { *m = MsgUpdateEnvironment{} }
