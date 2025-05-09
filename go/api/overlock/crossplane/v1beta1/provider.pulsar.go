@@ -4,19 +4,27 @@ package crossplanev1beta1
 import (
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
 	reflect "reflect"
 	sync "sync"
 )
 
 var (
-	md_Provider          protoreflect.MessageDescriptor
-	fd_Provider_metadata protoreflect.FieldDescriptor
-	fd_Provider_id       protoreflect.FieldDescriptor
-	fd_Provider_creator  protoreflect.FieldDescriptor
+	md_Provider                  protoreflect.MessageDescriptor
+	fd_Provider_metadata         protoreflect.FieldDescriptor
+	fd_Provider_id               protoreflect.FieldDescriptor
+	fd_Provider_creator          protoreflect.FieldDescriptor
+	fd_Provider_ip               protoreflect.FieldDescriptor
+	fd_Provider_port             protoreflect.FieldDescriptor
+	fd_Provider_country_code     protoreflect.FieldDescriptor
+	fd_Provider_environment_type protoreflect.FieldDescriptor
+	fd_Provider_availability     protoreflect.FieldDescriptor
+	fd_Provider_register_time    protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -25,6 +33,12 @@ func init() {
 	fd_Provider_metadata = md_Provider.Fields().ByName("metadata")
 	fd_Provider_id = md_Provider.Fields().ByName("id")
 	fd_Provider_creator = md_Provider.Fields().ByName("creator")
+	fd_Provider_ip = md_Provider.Fields().ByName("ip")
+	fd_Provider_port = md_Provider.Fields().ByName("port")
+	fd_Provider_country_code = md_Provider.Fields().ByName("country_code")
+	fd_Provider_environment_type = md_Provider.Fields().ByName("environment_type")
+	fd_Provider_availability = md_Provider.Fields().ByName("availability")
+	fd_Provider_register_time = md_Provider.Fields().ByName("register_time")
 }
 
 var _ protoreflect.Message = (*fastReflection_Provider)(nil)
@@ -110,6 +124,42 @@ func (x *fastReflection_Provider) Range(f func(protoreflect.FieldDescriptor, pro
 			return
 		}
 	}
+	if x.Ip != "" {
+		value := protoreflect.ValueOfString(x.Ip)
+		if !f(fd_Provider_ip, value) {
+			return
+		}
+	}
+	if x.Port != uint32(0) {
+		value := protoreflect.ValueOfUint32(x.Port)
+		if !f(fd_Provider_port, value) {
+			return
+		}
+	}
+	if x.CountryCode != "" {
+		value := protoreflect.ValueOfString(x.CountryCode)
+		if !f(fd_Provider_country_code, value) {
+			return
+		}
+	}
+	if x.EnvironmentType != "" {
+		value := protoreflect.ValueOfString(x.EnvironmentType)
+		if !f(fd_Provider_environment_type, value) {
+			return
+		}
+	}
+	if x.Availability != "" {
+		value := protoreflect.ValueOfString(x.Availability)
+		if !f(fd_Provider_availability, value) {
+			return
+		}
+	}
+	if x.RegisterTime != nil {
+		value := protoreflect.ValueOfMessage(x.RegisterTime.ProtoReflect())
+		if !f(fd_Provider_register_time, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -131,6 +181,18 @@ func (x *fastReflection_Provider) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Id != uint64(0)
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		return x.Creator != ""
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		return x.Ip != ""
+	case "overlock.crossplane.v1beta1.Provider.port":
+		return x.Port != uint32(0)
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		return x.CountryCode != ""
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		return x.EnvironmentType != ""
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		return x.Availability != ""
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		return x.RegisterTime != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -153,6 +215,18 @@ func (x *fastReflection_Provider) Clear(fd protoreflect.FieldDescriptor) {
 		x.Id = uint64(0)
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		x.Creator = ""
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		x.Ip = ""
+	case "overlock.crossplane.v1beta1.Provider.port":
+		x.Port = uint32(0)
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		x.CountryCode = ""
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		x.EnvironmentType = ""
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		x.Availability = ""
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		x.RegisterTime = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -178,6 +252,24 @@ func (x *fastReflection_Provider) Get(descriptor protoreflect.FieldDescriptor) p
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		value := x.Ip
+		return protoreflect.ValueOfString(value)
+	case "overlock.crossplane.v1beta1.Provider.port":
+		value := x.Port
+		return protoreflect.ValueOfUint32(value)
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		value := x.CountryCode
+		return protoreflect.ValueOfString(value)
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		value := x.EnvironmentType
+		return protoreflect.ValueOfString(value)
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		value := x.Availability
+		return protoreflect.ValueOfString(value)
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		value := x.RegisterTime
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -204,6 +296,18 @@ func (x *fastReflection_Provider) Set(fd protoreflect.FieldDescriptor, value pro
 		x.Id = value.Uint()
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		x.Creator = value.Interface().(string)
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		x.Ip = value.Interface().(string)
+	case "overlock.crossplane.v1beta1.Provider.port":
+		x.Port = uint32(value.Uint())
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		x.CountryCode = value.Interface().(string)
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		x.EnvironmentType = value.Interface().(string)
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		x.Availability = value.Interface().(string)
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		x.RegisterTime = value.Message().Interface().(*timestamppb.Timestamp)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -229,10 +333,25 @@ func (x *fastReflection_Provider) Mutable(fd protoreflect.FieldDescriptor) proto
 			x.Metadata = new(Metadata)
 		}
 		return protoreflect.ValueOfMessage(x.Metadata.ProtoReflect())
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		if x.RegisterTime == nil {
+			x.RegisterTime = new(timestamppb.Timestamp)
+		}
+		return protoreflect.ValueOfMessage(x.RegisterTime.ProtoReflect())
 	case "overlock.crossplane.v1beta1.Provider.id":
 		panic(fmt.Errorf("field id of message overlock.crossplane.v1beta1.Provider is not mutable"))
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		panic(fmt.Errorf("field creator of message overlock.crossplane.v1beta1.Provider is not mutable"))
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		panic(fmt.Errorf("field ip of message overlock.crossplane.v1beta1.Provider is not mutable"))
+	case "overlock.crossplane.v1beta1.Provider.port":
+		panic(fmt.Errorf("field port of message overlock.crossplane.v1beta1.Provider is not mutable"))
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		panic(fmt.Errorf("field country_code of message overlock.crossplane.v1beta1.Provider is not mutable"))
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		panic(fmt.Errorf("field environment_type of message overlock.crossplane.v1beta1.Provider is not mutable"))
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		panic(fmt.Errorf("field availability of message overlock.crossplane.v1beta1.Provider is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -253,6 +372,19 @@ func (x *fastReflection_Provider) NewField(fd protoreflect.FieldDescriptor) prot
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "overlock.crossplane.v1beta1.Provider.creator":
 		return protoreflect.ValueOfString("")
+	case "overlock.crossplane.v1beta1.Provider.ip":
+		return protoreflect.ValueOfString("")
+	case "overlock.crossplane.v1beta1.Provider.port":
+		return protoreflect.ValueOfUint32(uint32(0))
+	case "overlock.crossplane.v1beta1.Provider.country_code":
+		return protoreflect.ValueOfString("")
+	case "overlock.crossplane.v1beta1.Provider.environment_type":
+		return protoreflect.ValueOfString("")
+	case "overlock.crossplane.v1beta1.Provider.availability":
+		return protoreflect.ValueOfString("")
+	case "overlock.crossplane.v1beta1.Provider.register_time":
+		m := new(timestamppb.Timestamp)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: overlock.crossplane.v1beta1.Provider"))
@@ -333,6 +465,29 @@ func (x *fastReflection_Provider) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.Ip)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Port != 0 {
+			n += 1 + runtime.Sov(uint64(x.Port))
+		}
+		l = len(x.CountryCode)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.EnvironmentType)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Availability)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.RegisterTime != nil {
+			l = options.Size(x.RegisterTime)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -361,6 +516,53 @@ func (x *fastReflection_Provider) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.RegisterTime != nil {
+			encoded, err := options.Marshal(x.RegisterTime)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x4a
+		}
+		if len(x.Availability) > 0 {
+			i -= len(x.Availability)
+			copy(dAtA[i:], x.Availability)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Availability)))
+			i--
+			dAtA[i] = 0x42
+		}
+		if len(x.EnvironmentType) > 0 {
+			i -= len(x.EnvironmentType)
+			copy(dAtA[i:], x.EnvironmentType)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EnvironmentType)))
+			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.CountryCode) > 0 {
+			i -= len(x.CountryCode)
+			copy(dAtA[i:], x.CountryCode)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.CountryCode)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if x.Port != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Port))
+			i--
+			dAtA[i] = 0x28
+		}
+		if len(x.Ip) > 0 {
+			i -= len(x.Ip)
+			copy(dAtA[i:], x.Ip)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Ip)))
+			i--
+			dAtA[i] = 0x22
 		}
 		if len(x.Creator) > 0 {
 			i -= len(x.Creator)
@@ -524,6 +726,189 @@ func (x *fastReflection_Provider) ProtoMethods() *protoiface.Methods {
 				}
 				x.Creator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Ip", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Ip = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+				}
+				x.Port = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Port |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CountryCode", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.CountryCode = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EnvironmentType", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.EnvironmentType = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Availability", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Availability = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RegisterTime", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.RegisterTime == nil {
+					x.RegisterTime = &timestamppb.Timestamp{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.RegisterTime); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -584,6 +969,18 @@ type Provider struct {
 	Id uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
 	// creator
 	Creator string `protobuf:"bytes,3,opt,name=creator,proto3" json:"creator,omitempty"`
+	// ip
+	Ip string `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
+	// port
+	Port uint32 `protobuf:"varint,5,opt,name=port,proto3" json:"port,omitempty"`
+	// country code
+	CountryCode string `protobuf:"bytes,6,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
+	// environment type
+	EnvironmentType string `protobuf:"bytes,7,opt,name=environment_type,json=environmentType,proto3" json:"environment_type,omitempty"`
+	// availability
+	Availability string `protobuf:"bytes,8,opt,name=availability,proto3" json:"availability,omitempty"`
+	// register time
+	RegisterTime *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=register_time,json=registerTime,proto3" json:"register_time,omitempty"`
 }
 
 func (x *Provider) Reset() {
@@ -627,6 +1024,48 @@ func (x *Provider) GetCreator() string {
 	return ""
 }
 
+func (x *Provider) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+func (x *Provider) GetPort() uint32 {
+	if x != nil {
+		return x.Port
+	}
+	return 0
+}
+
+func (x *Provider) GetCountryCode() string {
+	if x != nil {
+		return x.CountryCode
+	}
+	return ""
+}
+
+func (x *Provider) GetEnvironmentType() string {
+	if x != nil {
+		return x.EnvironmentType
+	}
+	return ""
+}
+
+func (x *Provider) GetAvailability() string {
+	if x != nil {
+		return x.Availability
+	}
+	return ""
+}
+
+func (x *Provider) GetRegisterTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RegisterTime
+	}
+	return nil
+}
+
 var File_overlock_crossplane_v1beta1_provider_proto protoreflect.FileDescriptor
 
 var file_overlock_crossplane_v1beta1_provider_proto_rawDesc = []byte{
@@ -634,35 +1073,53 @@ var file_overlock_crossplane_v1beta1_provider_proto_rawDesc = []byte{
 	0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x70, 0x72,
 	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1b, 0x6f, 0x76,
 	0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e,
-	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x1a, 0x2a, 0x6f, 0x76, 0x65, 0x72, 0x6c,
-	0x6f, 0x63, 0x6b, 0x2f, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2f, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x77, 0x0a, 0x08, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
-	0x72, 0x12, 0x41, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x63,
-	0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x42, 0x94,
-	0x02, 0x0a, 0x1f, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e,
-	0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x31, 0x42, 0x0d, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x54, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2d, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6f, 0x76, 0x65, 0x72,
-	0x6c, 0x6f, 0x63, 0x6b, 0x2f, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2f,
-	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61,
-	0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02, 0x03, 0x4f, 0x43, 0x58, 0xaa,
-	0x02, 0x1b, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x43, 0x72, 0x6f, 0x73, 0x73,
-	0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xca, 0x02, 0x1b,
-	0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c,
-	0x61, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xe2, 0x02, 0x27, 0x4f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e,
-	0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1d, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b,
-	0x3a, 0x3a, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x3a, 0x3a, 0x56, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+	0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x1a, 0x2a, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2f, 0x63, 0x72, 0x6f, 0x73, 0x73,
+	0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x6d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd4, 0x02, 0x0a,
+	0x08, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x41, 0x0a, 0x08, 0x6d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x6f, 0x76,
+	0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x72, 0x79, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0b, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x29, 0x0a,
+	0x10, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70,
+	0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e,
+	0x6d, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x61, 0x76, 0x61, 0x69,
+	0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c,
+	0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x12, 0x45, 0x0a, 0x0d,
+	0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x09, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
+	0x04, 0x90, 0xdf, 0x1f, 0x01, 0x52, 0x0c, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x54,
+	0x69, 0x6d, 0x65, 0x42, 0x94, 0x02, 0x0a, 0x1f, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72,
+	0x6c, 0x6f, 0x63, 0x6b, 0x2e, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x42, 0x0d, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
+	0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x54, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2d, 0x6e, 0x65,
+	0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69,
+	0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2f, 0x63, 0x72, 0x6f, 0x73, 0x73, 0x70,
+	0x6c, 0x61, 0x6e, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x3b, 0x63, 0x72, 0x6f,
+	0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0xa2, 0x02,
+	0x03, 0x4f, 0x43, 0x58, 0xaa, 0x02, 0x1b, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x2e,
+	0x43, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x2e, 0x56, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0xca, 0x02, 0x1b, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x43, 0x72,
+	0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
+	0xe2, 0x02, 0x27, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x5c, 0x43, 0x72, 0x6f, 0x73,
+	0x73, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x5c, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1d, 0x4f, 0x76, 0x65,
+	0x72, 0x6c, 0x6f, 0x63, 0x6b, 0x3a, 0x3a, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x70, 0x6c, 0x61, 0x6e,
+	0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -679,16 +1136,18 @@ func file_overlock_crossplane_v1beta1_provider_proto_rawDescGZIP() []byte {
 
 var file_overlock_crossplane_v1beta1_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_overlock_crossplane_v1beta1_provider_proto_goTypes = []interface{}{
-	(*Provider)(nil), // 0: overlock.crossplane.v1beta1.Provider
-	(*Metadata)(nil), // 1: overlock.crossplane.v1beta1.Metadata
+	(*Provider)(nil),              // 0: overlock.crossplane.v1beta1.Provider
+	(*Metadata)(nil),              // 1: overlock.crossplane.v1beta1.Metadata
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_overlock_crossplane_v1beta1_provider_proto_depIdxs = []int32{
 	1, // 0: overlock.crossplane.v1beta1.Provider.metadata:type_name -> overlock.crossplane.v1beta1.Metadata
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: overlock.crossplane.v1beta1.Provider.register_time:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_overlock_crossplane_v1beta1_provider_proto_init() }

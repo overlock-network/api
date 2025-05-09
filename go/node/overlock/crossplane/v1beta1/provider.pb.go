@@ -5,16 +5,21 @@ package v1beta1
 
 import (
 	fmt "fmt"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
+	github_com_cosmos_gogoproto_types "github.com/cosmos/gogoproto/types"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
 	math "math"
 	math_bits "math/bits"
+	time "time"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+var _ = time.Kitchen
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -30,6 +35,18 @@ type Provider struct {
 	Id uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
 	// creator
 	Creator string `protobuf:"bytes,3,opt,name=creator,proto3" json:"creator,omitempty"`
+	// ip
+	Ip string `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
+	// port
+	Port uint32 `protobuf:"varint,5,opt,name=port,proto3" json:"port,omitempty"`
+	// country code
+	CountryCode string `protobuf:"bytes,6,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
+	// environment type
+	EnvironmentType string `protobuf:"bytes,7,opt,name=environment_type,json=environmentType,proto3" json:"environment_type,omitempty"`
+	// availability
+	Availability string `protobuf:"bytes,8,opt,name=availability,proto3" json:"availability,omitempty"`
+	// register time
+	RegisterTime *time.Time `protobuf:"bytes,9,opt,name=register_time,json=registerTime,proto3,stdtime" json:"register_time,omitempty"`
 }
 
 func (m *Provider) Reset()         { *m = Provider{} }
@@ -86,6 +103,48 @@ func (m *Provider) GetCreator() string {
 	return ""
 }
 
+func (m *Provider) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *Provider) GetPort() uint32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+func (m *Provider) GetCountryCode() string {
+	if m != nil {
+		return m.CountryCode
+	}
+	return ""
+}
+
+func (m *Provider) GetEnvironmentType() string {
+	if m != nil {
+		return m.EnvironmentType
+	}
+	return ""
+}
+
+func (m *Provider) GetAvailability() string {
+	if m != nil {
+		return m.Availability
+	}
+	return ""
+}
+
+func (m *Provider) GetRegisterTime() *time.Time {
+	if m != nil {
+		return m.RegisterTime
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*Provider)(nil), "overlock.crossplane.v1beta1.Provider")
 }
@@ -95,22 +154,32 @@ func init() {
 }
 
 var fileDescriptor_65ef282319d4705b = []byte{
-	// 230 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0xca, 0x2f, 0x4b, 0x2d,
-	0xca, 0xc9, 0x4f, 0xce, 0xd6, 0x4f, 0x2e, 0xca, 0x2f, 0x2e, 0x2e, 0xc8, 0x49, 0xcc, 0x4b, 0xd5,
-	0x2f, 0x33, 0x4c, 0x4a, 0x2d, 0x49, 0x34, 0xd4, 0x2f, 0x28, 0xca, 0x2f, 0xcb, 0x4c, 0x49, 0x2d,
-	0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x92, 0x86, 0xa9, 0xd5, 0x43, 0xa8, 0xd5, 0x83, 0xaa,
-	0x95, 0xc2, 0x6b, 0x50, 0x6e, 0x6a, 0x49, 0x62, 0x4a, 0x62, 0x49, 0x22, 0xc4, 0x20, 0xa5, 0x72,
-	0x2e, 0x8e, 0x00, 0xa8, 0xd1, 0x42, 0x8e, 0x5c, 0x1c, 0x30, 0x59, 0x09, 0x46, 0x05, 0x46, 0x0d,
-	0x6e, 0x23, 0x55, 0x3d, 0x3c, 0xf6, 0xe8, 0xf9, 0x42, 0x15, 0x07, 0xc1, 0xb5, 0x09, 0xf1, 0x71,
-	0x31, 0x65, 0xa6, 0x48, 0x30, 0x29, 0x30, 0x6a, 0xb0, 0x04, 0x31, 0x65, 0xa6, 0x08, 0x49, 0x70,
-	0xb1, 0x27, 0x17, 0xa5, 0x26, 0x96, 0xe4, 0x17, 0x49, 0x30, 0x2b, 0x30, 0x6a, 0x70, 0x06, 0xc1,
-	0xb8, 0x4e, 0xb1, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3,
-	0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78, 0x2c, 0xc7, 0x10, 0xe5, 0x9c, 0x9e,
-	0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97, 0x9c, 0x9f, 0xab, 0x0f, 0xb3, 0x5e, 0x37, 0x2f, 0xb5, 0xa4,
-	0x3c, 0xbf, 0x28, 0x5b, 0x3f, 0xb1, 0x20, 0x53, 0x3f, 0x3d, 0x5f, 0x3f, 0x2f, 0x3f, 0x25, 0x55,
-	0x1f, 0x8f, 0x37, 0x93, 0xd8, 0xc0, 0xde, 0x33, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x54, 0x0b,
-	0x36, 0x8f, 0x55, 0x01, 0x00, 0x00,
+	// 390 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0x41, 0x8b, 0xd3, 0x40,
+	0x14, 0xc7, 0x3b, 0x31, 0xee, 0x76, 0x67, 0xbb, 0x2a, 0x83, 0x87, 0xa1, 0x42, 0x36, 0x2e, 0x08,
+	0x51, 0x70, 0x86, 0xd5, 0x4f, 0xe0, 0x2e, 0x1e, 0x05, 0x09, 0x7b, 0x12, 0xa4, 0x4c, 0x92, 0x67,
+	0x1c, 0x9a, 0xe4, 0x0d, 0x93, 0x69, 0x24, 0xdf, 0xa2, 0x1f, 0xcb, 0x63, 0x0f, 0x1e, 0xbc, 0x29,
+	0xed, 0x17, 0x91, 0x4e, 0x13, 0x75, 0x2f, 0xbd, 0xbd, 0xf7, 0x7f, 0xbf, 0xc7, 0x3c, 0x7e, 0x43,
+	0x5f, 0x61, 0x07, 0xb6, 0xc2, 0x7c, 0x29, 0x73, 0x8b, 0x6d, 0x6b, 0x2a, 0xd5, 0x80, 0xec, 0xae,
+	0x33, 0x70, 0xea, 0x5a, 0x1a, 0x8b, 0x9d, 0x2e, 0xc0, 0x0a, 0x63, 0xd1, 0x21, 0x7b, 0x36, 0xb2,
+	0xe2, 0x1f, 0x2b, 0x06, 0x76, 0xfe, 0xb4, 0xc4, 0x12, 0x3d, 0x27, 0xf7, 0xd5, 0x61, 0x65, 0x7e,
+	0x59, 0x22, 0x96, 0x15, 0x48, 0xdf, 0x65, 0xab, 0x2f, 0xd2, 0xe9, 0x1a, 0x5a, 0xa7, 0x6a, 0x33,
+	0x00, 0x47, 0xdf, 0xaf, 0xc1, 0xa9, 0x42, 0x39, 0x75, 0x60, 0xaf, 0x7e, 0x04, 0x74, 0xfa, 0x71,
+	0x38, 0x89, 0xbd, 0xa3, 0xd3, 0x71, 0xcc, 0x49, 0x4c, 0x92, 0xf3, 0x37, 0x2f, 0xc4, 0x91, 0xfb,
+	0xc4, 0x87, 0x01, 0x4e, 0xff, 0xae, 0xb1, 0x47, 0x34, 0xd0, 0x05, 0x0f, 0x62, 0x92, 0x84, 0x69,
+	0xa0, 0x0b, 0xc6, 0xe9, 0x69, 0x6e, 0x41, 0x39, 0xb4, 0xfc, 0x41, 0x4c, 0x92, 0xb3, 0x74, 0x6c,
+	0x3d, 0x69, 0x78, 0xe8, 0xc3, 0x40, 0x1b, 0xc6, 0x68, 0x68, 0xd0, 0x3a, 0xfe, 0x30, 0x26, 0xc9,
+	0x45, 0xea, 0x6b, 0xf6, 0x9c, 0xce, 0x72, 0x5c, 0x35, 0xce, 0xf6, 0x8b, 0x1c, 0x0b, 0xe0, 0x27,
+	0x9e, 0x3e, 0x1f, 0xb2, 0x5b, 0x2c, 0x80, 0xbd, 0xa4, 0x4f, 0xa0, 0xe9, 0xb4, 0xc5, 0xa6, 0x86,
+	0xc6, 0x2d, 0x5c, 0x6f, 0x80, 0x9f, 0x7a, 0xec, 0xf1, 0x7f, 0xf9, 0x5d, 0x6f, 0x80, 0x5d, 0xd1,
+	0x99, 0xea, 0x94, 0xae, 0x54, 0xa6, 0x2b, 0xed, 0x7a, 0x3e, 0xf5, 0xd8, 0xbd, 0x8c, 0xbd, 0xa7,
+	0x17, 0x16, 0x4a, 0xdd, 0x3a, 0xb0, 0x8b, 0xbd, 0x57, 0x7e, 0xe6, 0x3d, 0xcc, 0xc5, 0x41, 0xba,
+	0x18, 0xa5, 0x8b, 0xbb, 0x51, 0xfa, 0x4d, 0xb8, 0xfe, 0x75, 0x49, 0xd2, 0xd9, 0xb8, 0xb6, 0x1f,
+	0xdc, 0x7c, 0xfe, 0xbe, 0x8d, 0xc8, 0x66, 0x1b, 0x91, 0xdf, 0xdb, 0x88, 0xac, 0x77, 0xd1, 0x64,
+	0xb3, 0x8b, 0x26, 0x3f, 0x77, 0xd1, 0xe4, 0xd3, 0x6d, 0xa9, 0xdd, 0xd7, 0x55, 0x26, 0x72, 0xac,
+	0xe5, 0xe8, 0xf6, 0x75, 0x03, 0xee, 0x1b, 0xda, 0xa5, 0x54, 0x46, 0xcb, 0x12, 0x65, 0x83, 0x05,
+	0xc8, 0x23, 0x9f, 0x98, 0x9d, 0xf8, 0x33, 0xde, 0xfe, 0x09, 0x00, 0x00, 0xff, 0xff, 0x18, 0x81,
+	0x87, 0x53, 0x6a, 0x02, 0x00, 0x00,
 }
 
 func (m *Provider) Marshal() (dAtA []byte, err error) {
@@ -133,6 +202,49 @@ func (m *Provider) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.RegisterTime != nil {
+		n1, err1 := github_com_cosmos_gogoproto_types.StdTimeMarshalTo(*m.RegisterTime, dAtA[i-github_com_cosmos_gogoproto_types.SizeOfStdTime(*m.RegisterTime):])
+		if err1 != nil {
+			return 0, err1
+		}
+		i -= n1
+		i = encodeVarintProvider(dAtA, i, uint64(n1))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Availability) > 0 {
+		i -= len(m.Availability)
+		copy(dAtA[i:], m.Availability)
+		i = encodeVarintProvider(dAtA, i, uint64(len(m.Availability)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.EnvironmentType) > 0 {
+		i -= len(m.EnvironmentType)
+		copy(dAtA[i:], m.EnvironmentType)
+		i = encodeVarintProvider(dAtA, i, uint64(len(m.EnvironmentType)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.CountryCode) > 0 {
+		i -= len(m.CountryCode)
+		copy(dAtA[i:], m.CountryCode)
+		i = encodeVarintProvider(dAtA, i, uint64(len(m.CountryCode)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if m.Port != 0 {
+		i = encodeVarintProvider(dAtA, i, uint64(m.Port))
+		i--
+		dAtA[i] = 0x28
+	}
+	if len(m.Ip) > 0 {
+		i -= len(m.Ip)
+		copy(dAtA[i:], m.Ip)
+		i = encodeVarintProvider(dAtA, i, uint64(len(m.Ip)))
+		i--
+		dAtA[i] = 0x22
+	}
 	if len(m.Creator) > 0 {
 		i -= len(m.Creator)
 		copy(dAtA[i:], m.Creator)
@@ -186,6 +298,29 @@ func (m *Provider) Size() (n int) {
 	}
 	l = len(m.Creator)
 	if l > 0 {
+		n += 1 + l + sovProvider(uint64(l))
+	}
+	l = len(m.Ip)
+	if l > 0 {
+		n += 1 + l + sovProvider(uint64(l))
+	}
+	if m.Port != 0 {
+		n += 1 + sovProvider(uint64(m.Port))
+	}
+	l = len(m.CountryCode)
+	if l > 0 {
+		n += 1 + l + sovProvider(uint64(l))
+	}
+	l = len(m.EnvironmentType)
+	if l > 0 {
+		n += 1 + l + sovProvider(uint64(l))
+	}
+	l = len(m.Availability)
+	if l > 0 {
+		n += 1 + l + sovProvider(uint64(l))
+	}
+	if m.RegisterTime != nil {
+		l = github_com_cosmos_gogoproto_types.SizeOfStdTime(*m.RegisterTime)
 		n += 1 + l + sovProvider(uint64(l))
 	}
 	return n
@@ -312,6 +447,189 @@ func (m *Provider) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ip", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthProvider
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthProvider
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Ip = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			m.Port = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Port |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CountryCode", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthProvider
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthProvider
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CountryCode = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EnvironmentType", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthProvider
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthProvider
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.EnvironmentType = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Availability", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthProvider
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthProvider
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Availability = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterTime", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProvider
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthProvider
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthProvider
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.RegisterTime == nil {
+				m.RegisterTime = new(time.Time)
+			}
+			if err := github_com_cosmos_gogoproto_types.StdTimeUnmarshal(m.RegisterTime, dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
