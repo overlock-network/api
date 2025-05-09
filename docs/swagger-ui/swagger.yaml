@@ -35,6 +35,26 @@ paths:
                     creator:
                       type: string
                       title: creator
+                    ip:
+                      type: string
+                      title: ip
+                    port:
+                      type: integer
+                      format: int64
+                      title: port
+                    country_code:
+                      type: string
+                      title: country code
+                    environment_type:
+                      type: string
+                      title: environment type
+                    availability:
+                      type: string
+                      title: availability
+                    register_time:
+                      type: string
+                      format: date-time
+                      title: register time
                   title: Provider
               pagination:
                 type: object
@@ -474,6 +494,26 @@ paths:
                   creator:
                     type: string
                     title: creator
+                  ip:
+                    type: string
+                    title: ip
+                  port:
+                    type: integer
+                    format: int64
+                    title: port
+                  country_code:
+                    type: string
+                    title: country code
+                  environment_type:
+                    type: string
+                    title: environment type
+                  availability:
+                    type: string
+                    title: availability
+                  register_time:
+                    type: string
+                    format: date-time
+                    title: register time
                 title: Provider
             title: QueryShowProviderResponse
         default:
@@ -1012,6 +1052,26 @@ definitions:
       creator:
         type: string
         title: creator
+      ip:
+        type: string
+        title: ip
+      port:
+        type: integer
+        format: int64
+        title: port
+      country_code:
+        type: string
+        title: country code
+      environment_type:
+        type: string
+        title: environment type
+      availability:
+        type: string
+        title: availability
+      register_time:
+        type: string
+        format: date-time
+        title: register time
     title: Provider
   v1beta1QueryListConfigurationResponse:
     type: object
@@ -1156,6 +1216,26 @@ definitions:
             creator:
               type: string
               title: creator
+            ip:
+              type: string
+              title: ip
+            port:
+              type: integer
+              format: int64
+              title: port
+            country_code:
+              type: string
+              title: country code
+            environment_type:
+              type: string
+              title: environment type
+            availability:
+              type: string
+              title: availability
+            register_time:
+              type: string
+              format: date-time
+              title: register time
           title: Provider
       pagination:
         type: object
@@ -1269,6 +1349,26 @@ definitions:
           creator:
             type: string
             title: creator
+          ip:
+            type: string
+            title: ip
+          port:
+            type: integer
+            format: int64
+            title: port
+          country_code:
+            type: string
+            title: country code
+          environment_type:
+            type: string
+            title: environment type
+          availability:
+            type: string
+            title: availability
+          register_time:
+            type: string
+            format: date-time
+            title: register time
         title: Provider
     title: QueryShowProviderResponse
   v1beta1QueryListRegistryResponse:

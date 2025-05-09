@@ -1,7 +1,9 @@
 //@ts-nocheck
 import { Metadata, MetadataAmino, MetadataSDKType } from "./metadata";
 import { ConfigurationSpec, ConfigurationSpecAmino, ConfigurationSpecSDKType } from "./configuration";
+import { Timestamp } from "../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { toTimestamp, fromTimestamp } from "../../../helpers";
 /** MsgCreateConfiguration */
 export interface MsgCreateConfiguration {
   creator: string;
@@ -264,6 +266,12 @@ export interface MsgDeleteEnvironmentResponseSDKType {}
 export interface MsgCreateProvider {
   creator: string;
   metadata?: Metadata;
+  ip: string;
+  port: number;
+  countryCode: string;
+  environmentType: string;
+  availability: string;
+  registerTime?: Date;
 }
 export interface MsgCreateProviderProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgCreateProvider";
@@ -273,6 +281,12 @@ export interface MsgCreateProviderProtoMsg {
 export interface MsgCreateProviderAmino {
   creator?: string;
   metadata?: MetadataAmino;
+  ip?: string;
+  port?: number;
+  country_code?: string;
+  environment_type?: string;
+  availability?: string;
+  register_time?: string;
 }
 export interface MsgCreateProviderAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgCreateProvider";
@@ -282,6 +296,12 @@ export interface MsgCreateProviderAminoMsg {
 export interface MsgCreateProviderSDKType {
   creator: string;
   metadata?: MetadataSDKType;
+  ip: string;
+  port: number;
+  country_code: string;
+  environment_type: string;
+  availability: string;
+  register_time?: Date;
 }
 /** MsgCreateProviderResponse */
 export interface MsgCreateProviderResponse {
@@ -308,6 +328,12 @@ export interface MsgUpdateProvider {
   creator: string;
   id: bigint;
   metadata?: Metadata;
+  ip: string;
+  port: number;
+  countryCode: string;
+  environmentType: string;
+  availability: string;
+  registerTime?: Date;
 }
 export interface MsgUpdateProviderProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateProvider";
@@ -318,6 +344,12 @@ export interface MsgUpdateProviderAmino {
   creator?: string;
   id?: string;
   metadata?: MetadataAmino;
+  ip?: string;
+  port?: number;
+  country_code?: string;
+  environment_type?: string;
+  availability?: string;
+  register_time?: string;
 }
 export interface MsgUpdateProviderAminoMsg {
   type: "/overlock.crossplane.v1beta1.MsgUpdateProvider";
@@ -328,6 +360,12 @@ export interface MsgUpdateProviderSDKType {
   creator: string;
   id: bigint;
   metadata?: MetadataSDKType;
+  ip: string;
+  port: number;
+  country_code: string;
+  environment_type: string;
+  availability: string;
+  register_time?: Date;
 }
 /** MsgUpdateProviderResponse */
 export interface MsgUpdateProviderResponse {
@@ -1250,7 +1288,13 @@ export const MsgDeleteEnvironmentResponse = {
 function createBaseMsgCreateProvider(): MsgCreateProvider {
   return {
     creator: "",
-    metadata: undefined
+    metadata: undefined,
+    ip: "",
+    port: 0,
+    countryCode: "",
+    environmentType: "",
+    availability: "",
+    registerTime: undefined
   };
 }
 export const MsgCreateProvider = {
@@ -1260,7 +1304,25 @@ export const MsgCreateProvider = {
       writer.uint32(10).string(message.creator);
     }
     if (message.metadata !== undefined) {
-      Metadata.encode(message.metadata, writer.uint32(26).fork()).ldelim();
+      Metadata.encode(message.metadata, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.ip !== "") {
+      writer.uint32(26).string(message.ip);
+    }
+    if (message.port !== 0) {
+      writer.uint32(32).uint32(message.port);
+    }
+    if (message.countryCode !== "") {
+      writer.uint32(42).string(message.countryCode);
+    }
+    if (message.environmentType !== "") {
+      writer.uint32(50).string(message.environmentType);
+    }
+    if (message.availability !== "") {
+      writer.uint32(58).string(message.availability);
+    }
+    if (message.registerTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.registerTime), writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
@@ -1274,8 +1336,26 @@ export const MsgCreateProvider = {
         case 1:
           message.creator = reader.string();
           break;
-        case 3:
+        case 2:
           message.metadata = Metadata.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.ip = reader.string();
+          break;
+        case 4:
+          message.port = reader.uint32();
+          break;
+        case 5:
+          message.countryCode = reader.string();
+          break;
+        case 6:
+          message.environmentType = reader.string();
+          break;
+        case 7:
+          message.availability = reader.string();
+          break;
+        case 8:
+          message.registerTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1288,6 +1368,12 @@ export const MsgCreateProvider = {
     const message = createBaseMsgCreateProvider();
     message.creator = object.creator ?? "";
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.ip = object.ip ?? "";
+    message.port = object.port ?? 0;
+    message.countryCode = object.countryCode ?? "";
+    message.environmentType = object.environmentType ?? "";
+    message.availability = object.availability ?? "";
+    message.registerTime = object.registerTime ?? undefined;
     return message;
   },
   fromAmino(object: MsgCreateProviderAmino): MsgCreateProvider {
@@ -1298,12 +1384,36 @@ export const MsgCreateProvider = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.ip !== undefined && object.ip !== null) {
+      message.ip = object.ip;
+    }
+    if (object.port !== undefined && object.port !== null) {
+      message.port = object.port;
+    }
+    if (object.country_code !== undefined && object.country_code !== null) {
+      message.countryCode = object.country_code;
+    }
+    if (object.environment_type !== undefined && object.environment_type !== null) {
+      message.environmentType = object.environment_type;
+    }
+    if (object.availability !== undefined && object.availability !== null) {
+      message.availability = object.availability;
+    }
+    if (object.register_time !== undefined && object.register_time !== null) {
+      message.registerTime = fromTimestamp(Timestamp.fromAmino(object.register_time));
+    }
     return message;
   },
   toAmino(message: MsgCreateProvider): MsgCreateProviderAmino {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.ip = message.ip === "" ? undefined : message.ip;
+    obj.port = message.port === 0 ? undefined : message.port;
+    obj.country_code = message.countryCode === "" ? undefined : message.countryCode;
+    obj.environment_type = message.environmentType === "" ? undefined : message.environmentType;
+    obj.availability = message.availability === "" ? undefined : message.availability;
+    obj.register_time = message.registerTime ? Timestamp.toAmino(toTimestamp(message.registerTime)) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgCreateProviderAminoMsg): MsgCreateProvider {
@@ -1389,7 +1499,13 @@ function createBaseMsgUpdateProvider(): MsgUpdateProvider {
   return {
     creator: "",
     id: BigInt(0),
-    metadata: undefined
+    metadata: undefined,
+    ip: "",
+    port: 0,
+    countryCode: "",
+    environmentType: "",
+    availability: "",
+    registerTime: undefined
   };
 }
 export const MsgUpdateProvider = {
@@ -1403,6 +1519,24 @@ export const MsgUpdateProvider = {
     }
     if (message.metadata !== undefined) {
       Metadata.encode(message.metadata, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.ip !== "") {
+      writer.uint32(34).string(message.ip);
+    }
+    if (message.port !== 0) {
+      writer.uint32(40).uint32(message.port);
+    }
+    if (message.countryCode !== "") {
+      writer.uint32(50).string(message.countryCode);
+    }
+    if (message.environmentType !== "") {
+      writer.uint32(58).string(message.environmentType);
+    }
+    if (message.availability !== "") {
+      writer.uint32(66).string(message.availability);
+    }
+    if (message.registerTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.registerTime), writer.uint32(74).fork()).ldelim();
     }
     return writer;
   },
@@ -1422,6 +1556,24 @@ export const MsgUpdateProvider = {
         case 3:
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
+        case 4:
+          message.ip = reader.string();
+          break;
+        case 5:
+          message.port = reader.uint32();
+          break;
+        case 6:
+          message.countryCode = reader.string();
+          break;
+        case 7:
+          message.environmentType = reader.string();
+          break;
+        case 8:
+          message.availability = reader.string();
+          break;
+        case 9:
+          message.registerTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1434,6 +1586,12 @@ export const MsgUpdateProvider = {
     message.creator = object.creator ?? "";
     message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
+    message.ip = object.ip ?? "";
+    message.port = object.port ?? 0;
+    message.countryCode = object.countryCode ?? "";
+    message.environmentType = object.environmentType ?? "";
+    message.availability = object.availability ?? "";
+    message.registerTime = object.registerTime ?? undefined;
     return message;
   },
   fromAmino(object: MsgUpdateProviderAmino): MsgUpdateProvider {
@@ -1447,6 +1605,24 @@ export const MsgUpdateProvider = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
+    if (object.ip !== undefined && object.ip !== null) {
+      message.ip = object.ip;
+    }
+    if (object.port !== undefined && object.port !== null) {
+      message.port = object.port;
+    }
+    if (object.country_code !== undefined && object.country_code !== null) {
+      message.countryCode = object.country_code;
+    }
+    if (object.environment_type !== undefined && object.environment_type !== null) {
+      message.environmentType = object.environment_type;
+    }
+    if (object.availability !== undefined && object.availability !== null) {
+      message.availability = object.availability;
+    }
+    if (object.register_time !== undefined && object.register_time !== null) {
+      message.registerTime = fromTimestamp(Timestamp.fromAmino(object.register_time));
+    }
     return message;
   },
   toAmino(message: MsgUpdateProvider): MsgUpdateProviderAmino {
@@ -1454,6 +1630,12 @@ export const MsgUpdateProvider = {
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
+    obj.ip = message.ip === "" ? undefined : message.ip;
+    obj.port = message.port === 0 ? undefined : message.port;
+    obj.country_code = message.countryCode === "" ? undefined : message.countryCode;
+    obj.environment_type = message.environmentType === "" ? undefined : message.environmentType;
+    obj.availability = message.availability === "" ? undefined : message.availability;
+    obj.register_time = message.registerTime ? Timestamp.toAmino(toTimestamp(message.registerTime)) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateProviderAminoMsg): MsgUpdateProvider {
