@@ -6,6 +6,7 @@ import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
 import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
 import "overlock/crossplane/v1beta1/provider.proto";
@@ -102,7 +103,7 @@ message QueryShowProviderResponse {
 // QueryListProviderRequest
 message QueryListProviderRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  optional string creator = 2;
+  google.protobuf.StringValue creator = 2;
 }
 
 // QueryListProviderResponse
