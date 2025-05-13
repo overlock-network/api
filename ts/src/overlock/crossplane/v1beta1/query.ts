@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../cosmos/base/query/v1beta1/pagination";
+import { StringValue, StringValueAmino, StringValueSDKType } from "../../../google/protobuf/wrappers";
 import { Configuration, ConfigurationAmino, ConfigurationSDKType } from "./configuration";
 import { Environment, EnvironmentAmino, EnvironmentSDKType } from "./environment";
 import { Provider, ProviderAmino, ProviderSDKType } from "./provider";
@@ -219,7 +220,7 @@ export interface QueryShowProviderResponseSDKType {
 /** QueryListProviderRequest */
 export interface QueryListProviderRequest {
   pagination?: PageRequest;
-  creator: string;
+  creator?: StringValue;
 }
 export interface QueryListProviderRequestProtoMsg {
   typeUrl: "/overlock.crossplane.v1beta1.QueryListProviderRequest";
@@ -228,7 +229,7 @@ export interface QueryListProviderRequestProtoMsg {
 /** QueryListProviderRequest */
 export interface QueryListProviderRequestAmino {
   pagination?: PageRequestAmino;
-  creator?: string;
+  creator?: StringValueAmino;
 }
 export interface QueryListProviderRequestAminoMsg {
   type: "/overlock.crossplane.v1beta1.QueryListProviderRequest";
@@ -237,7 +238,7 @@ export interface QueryListProviderRequestAminoMsg {
 /** QueryListProviderRequest */
 export interface QueryListProviderRequestSDKType {
   pagination?: PageRequestSDKType;
-  creator: string;
+  creator?: StringValueSDKType;
 }
 /** QueryListProviderResponse */
 export interface QueryListProviderResponse {
@@ -947,7 +948,7 @@ export const QueryShowProviderResponse = {
 function createBaseQueryListProviderRequest(): QueryListProviderRequest {
   return {
     pagination: undefined,
-    creator: ""
+    creator: undefined
   };
 }
 export const QueryListProviderRequest = {
@@ -956,8 +957,8 @@ export const QueryListProviderRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
     }
-    if (message.creator !== "") {
-      writer.uint32(18).string(message.creator);
+    if (message.creator !== undefined) {
+      StringValue.encode(message.creator, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -972,7 +973,7 @@ export const QueryListProviderRequest = {
           message.pagination = PageRequest.decode(reader, reader.uint32());
           break;
         case 2:
-          message.creator = reader.string();
+          message.creator = StringValue.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -984,7 +985,7 @@ export const QueryListProviderRequest = {
   fromPartial(object: Partial<QueryListProviderRequest>): QueryListProviderRequest {
     const message = createBaseQueryListProviderRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
-    message.creator = object.creator ?? "";
+    message.creator = object.creator !== undefined && object.creator !== null ? StringValue.fromPartial(object.creator) : undefined;
     return message;
   },
   fromAmino(object: QueryListProviderRequestAmino): QueryListProviderRequest {
@@ -993,14 +994,14 @@ export const QueryListProviderRequest = {
       message.pagination = PageRequest.fromAmino(object.pagination);
     }
     if (object.creator !== undefined && object.creator !== null) {
-      message.creator = object.creator;
+      message.creator = StringValue.fromAmino(object.creator);
     }
     return message;
   },
   toAmino(message: QueryListProviderRequest): QueryListProviderRequestAmino {
     const obj: any = {};
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
-    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.creator = message.creator ? StringValue.toAmino(message.creator) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryListProviderRequestAminoMsg): QueryListProviderRequest {
