@@ -102,7 +102,7 @@ message QueryShowProviderResponse {
 // QueryListProviderRequest
 message QueryListProviderRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
+  optional string creator = 2;
 }
 
 // QueryListProviderResponse
