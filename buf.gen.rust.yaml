@@ -1,0 +1,4 @@
+version: v1
+plugins:
+  - plugin: prost
+    out: rust/src/types

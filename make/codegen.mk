@@ -13,7 +13,10 @@ proto-gen-pulsar:
 .PHONY: proto-gen-ts
 proto-gen-ts: 
 	./script/protoc-gen-ts.sh
+.PHONY: proto-gen-rust
+proto-gen-rust:
+	./script/protoc-gen-rust.sh
 
 .PHONY: codegen
-codegen: proto-gen-go proto-gen-swagger proto-gen-pulsar proto-gen-ts
+codegen: proto-gen-go proto-gen-swagger proto-gen-pulsar proto-gen-ts proto-gen-rust
 
