@@ -8,34 +8,6 @@ pub struct Metadata {
     #[prost(string, tag="2")]
     pub annotations: ::prost::alloc::string::String,
 }
-/// Configuration holds the configuration details.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Configuration {
-    #[prost(uint64, tag="1")]
-    pub id: u64,
-    #[prost(message, optional, tag="2")]
-    pub metadata: ::core::option::Option<Metadata>,
-    #[prost(message, optional, tag="3")]
-    pub spec: ::core::option::Option<ConfigurationSpec>,
-    #[prost(string, tag="4")]
-    pub creator: ::prost::alloc::string::String,
-}
-/// Spec defines the specification of the composition.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigurationSpec {
-    #[prost(message, optional, tag="1")]
-    pub crossplane: ::core::option::Option<CrossplaneSpec>,
-    #[prost(string, tag="2")]
-    pub package: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
-    pub aes_key: ::prost::alloc::string::String,
-}
-/// Crossplane specs.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CrossplaneSpec {
-    #[prost(string, tag="1")]
-    pub version: ::prost::alloc::string::String,
-}
 /// Environment
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Environment {
@@ -94,34 +66,6 @@ pub struct Provider {
     #[prost(message, optional, tag="9")]
     pub register_time: ::core::option::Option<::prost_types::Timestamp>,
 }
-/// QueryShowConfigurationRequest
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct QueryShowConfigurationRequest {
-    #[prost(uint64, tag="1")]
-    pub id: u64,
-}
-/// QueryShowConfigurationResponse
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryShowConfigurationResponse {
-    #[prost(message, optional, tag="1")]
-    pub configuration: ::core::option::Option<Configuration>,
-}
-/// QueryListConfigurationRequest
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryListConfigurationRequest {
-    #[prost(message, optional, tag="1")]
-    pub pagination: ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
-    #[prost(string, tag="2")]
-    pub creator: ::prost::alloc::string::String,
-}
-/// QueryListConfigurationResponse
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryListConfigurationResponse {
-    #[prost(message, repeated, tag="1")]
-    pub configurations: ::prost::alloc::vec::Vec<Configuration>,
-    #[prost(message, optional, tag="2")]
-    pub pagination: ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
-}
 /// QueryShowEnvironmentRequest
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct QueryShowEnvironmentRequest {
@@ -177,50 +121,6 @@ pub struct QueryListProviderResponse {
     pub providers: ::prost::alloc::vec::Vec<Provider>,
     #[prost(message, optional, tag="2")]
     pub pagination: ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
-}
-/// MsgCreateConfiguration
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgCreateConfiguration {
-    #[prost(string, tag="1")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="4")]
-    pub metadata: ::core::option::Option<Metadata>,
-    #[prost(message, optional, tag="5")]
-    pub spec: ::core::option::Option<ConfigurationSpec>,
-}
-/// MsgCreateConfigurationResponse
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MsgCreateConfigurationResponse {
-    #[prost(uint64, tag="1")]
-    pub id: u64,
-}
-/// MsgUpdateConfiguration
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateConfiguration {
-    #[prost(string, tag="1")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(uint64, tag="2")]
-    pub id: u64,
-    #[prost(message, optional, tag="5")]
-    pub metadata: ::core::option::Option<Metadata>,
-    #[prost(message, optional, tag="6")]
-    pub spec: ::core::option::Option<ConfigurationSpec>,
-}
-/// MsgUpdateConfigurationResponse
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MsgUpdateConfigurationResponse {
-}
-/// MsgDeleteConfiguration
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgDeleteConfiguration {
-    #[prost(string, tag="1")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(uint64, tag="2")]
-    pub id: u64,
-}
-/// MsgDeleteConfigurationResponse
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct MsgDeleteConfigurationResponse {
 }
 /// MsgCreateEnvironment
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -7,7 +7,6 @@ import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "google/protobuf/timestamp.proto";
-import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
 import "overlock/crossplane/v1beta1/metadata.proto";
 
@@ -16,16 +15,6 @@ option go_package = "github.com/overlock-network/api/go/node/overlock/crossplane
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
-
-  // CreateConfiguration
-  rpc CreateConfiguration(MsgCreateConfiguration) returns (MsgCreateConfigurationResponse);
-
-  // UpdateConfiguration
-  rpc UpdateConfiguration(MsgUpdateConfiguration) returns (MsgUpdateConfigurationResponse);
-
-  // DeleteConfiguration
-  rpc DeleteConfiguration(MsgDeleteConfiguration) returns (MsgDeleteConfigurationResponse);
-
   // CreateEnvironment
   rpc CreateEnvironment(MsgCreateEnvironment) returns (MsgCreateEnvironmentResponse);
 
@@ -44,41 +33,6 @@ service Msg {
   // DeleteProvider
   rpc DeleteProvider(MsgDeleteProvider) returns (MsgDeleteProviderResponse);
 }
-
-// MsgCreateConfiguration
-message MsgCreateConfiguration {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  Metadata metadata = 4;
-  ConfigurationSpec spec = 5;
-}
-
-// MsgCreateConfigurationResponse
-message MsgCreateConfigurationResponse {
-  uint64 id = 1;
-}
-
-// MsgUpdateConfiguration
-message MsgUpdateConfiguration {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  Metadata metadata = 5;
-  ConfigurationSpec spec = 6;
-}
-
-// MsgUpdateConfigurationResponse
-message MsgUpdateConfigurationResponse {}
-
-// MsgDeleteConfiguration
-message MsgDeleteConfiguration {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-}
-
-// MsgDeleteConfigurationResponse
-message MsgDeleteConfigurationResponse {}
 
 // MsgCreateEnvironment
 message MsgCreateEnvironment {

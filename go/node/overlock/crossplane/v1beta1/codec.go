@@ -9,24 +9,6 @@ import (
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteConfiguration{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateEnvironment{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
