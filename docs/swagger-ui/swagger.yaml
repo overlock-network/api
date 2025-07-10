@@ -4,7 +4,153 @@ info:
   description: A REST interface for state queries
   version: 1.0.0
 paths:
-  /overlock/crossplane/list_Provider:
+  /overlock/crossplane/list_environment:
+    get:
+      summary: Queries a list of ListEnvironment items.
+      operationId: Query_ListEnvironment
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              environments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    metadata:
+                      title: metadata
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        annotations:
+                          type: string
+                      description: Metadata contains metadata information.
+                    id:
+                      type: string
+                      format: uint64
+                      title: id
+                    creator:
+                      type: string
+                      title: creator
+                    provider:
+                      type: string
+                      format: uint64
+                      title: provider
+                  title: Environment
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+            title: QueryListEnvironmentResponse
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+        - name: creator
+          in: query
+          required: false
+          type: string
+      tags:
+        - Query
+  /overlock/crossplane/list_provider:
     get:
       summary: Queries a list of ListProvider items.
       operationId: Query_ListProvider
@@ -166,78 +312,41 @@ paths:
           type: string
       tags:
         - Query
-  /overlock/crossplane/list_configuration:
+  /overlock/crossplane/show_environment/{id}:
     get:
-      summary: Queries a list of ListConfiguration items.
-      operationId: Query_ListConfiguration
+      summary: Queries a list of ShowEnvironment items.
+      operationId: Query_ShowEnvironment
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              configurations:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    metadata:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        annotations:
-                          type: string
-                      description: Metadata contains metadata information.
-                    spec:
-                      type: object
-                      properties:
-                        crossplane:
-                          type: object
-                          properties:
-                            version:
-                              type: string
-                          description: Crossplane specs.
-                        package:
-                          type: string
-                        aes_key:
-                          type: string
-                      description: Spec defines the specification of the composition.
-                    creator:
-                      type: string
-                  description: Configuration holds the configuration details.
-              pagination:
+              environment:
                 type: object
                 properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
+                  metadata:
+                    title: metadata
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      annotations:
+                        type: string
+                    description: Metadata contains metadata information.
+                  id:
                     type: string
                     format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-            title: QueryListConfigurationResponse
+                    title: id
+                  creator:
+                    type: string
+                    title: creator
+                  provider:
+                    type: string
+                    format: uint64
+                    title: provider
+                title: Environment
+            title: QueryShowEnvironmentResponse
         default:
           description: An unexpected error response.
           schema:
@@ -257,215 +366,14 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
+        - name: id
+          in: path
+          required: true
           type: string
           format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-        - name: creator
-          in: query
-          required: false
-          type: string
       tags:
         - Query
-  /overlock/crossplane/list_environment:
-    get:
-      summary: Queries a list of ListEnvironment items.
-      operationId: Query_ListEnvironment
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              environments:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    metadata:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        annotations:
-                          type: string
-                      description: Metadata contains metadata information.
-                      title: metadata
-                    id:
-                      type: string
-                      format: uint64
-                      title: id
-                    creator:
-                      type: string
-                      title: creator
-                    provider:
-                      type: string
-                      format: uint64
-                      title: provider
-                  title: Environment
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-            title: QueryListEnvironmentResponse
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-        - name: creator
-          in: query
-          required: false
-          type: string
-      tags:
-        - Query
-  /overlock/crossplane/show_Provider/{id}:
+  /overlock/crossplane/show_provider/{id}:
     get:
       summary: Queries a list of ShowProvider items.
       operationId: Query_ShowProvider
@@ -516,135 +424,6 @@ paths:
                     title: register time
                 title: Provider
             title: QueryShowProviderResponse
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /overlock/crossplane/show_configuration/{id}:
-    get:
-      summary: Queries a list of ShowConfiguration items.
-      operationId: Query_ShowConfiguration
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              configuration:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  metadata:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      annotations:
-                        type: string
-                    description: Metadata contains metadata information.
-                  spec:
-                    type: object
-                    properties:
-                      crossplane:
-                        type: object
-                        properties:
-                          version:
-                            type: string
-                        description: Crossplane specs.
-                      package:
-                        type: string
-                      aes_key:
-                        type: string
-                    description: Spec defines the specification of the composition.
-                  creator:
-                    type: string
-                description: Configuration holds the configuration details.
-            title: QueryShowConfigurationResponse
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /overlock/crossplane/show_environment/{id}:
-    get:
-      summary: Queries a list of ShowEnvironment items.
-      operationId: Query_ShowEnvironment
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              environment:
-                type: object
-                properties:
-                  metadata:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      annotations:
-                        type: string
-                    description: Metadata contains metadata information.
-                    title: metadata
-                  id:
-                    type: string
-                    format: uint64
-                    title: id
-                  creator:
-                    type: string
-                    title: creator
-                  provider:
-                    type: string
-                    format: uint64
-                    title: provider
-                title: Environment
-            title: QueryShowEnvironmentResponse
         default:
           description: An unexpected error response.
           schema:
@@ -873,61 +652,11 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
-  v1beta1Configuration:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-      metadata:
-        type: object
-        properties:
-          name:
-            type: string
-          annotations:
-            type: string
-        description: Metadata contains metadata information.
-      spec:
-        type: object
-        properties:
-          crossplane:
-            type: object
-            properties:
-              version:
-                type: string
-            description: Crossplane specs.
-          package:
-            type: string
-          aes_key:
-            type: string
-        description: Spec defines the specification of the composition.
-      creator:
-        type: string
-    description: Configuration holds the configuration details.
-  v1beta1ConfigurationSpec:
-    type: object
-    properties:
-      crossplane:
-        type: object
-        properties:
-          version:
-            type: string
-        description: Crossplane specs.
-      package:
-        type: string
-      aes_key:
-        type: string
-    description: Spec defines the specification of the composition.
-  v1beta1CrossplaneSpec:
-    type: object
-    properties:
-      version:
-        type: string
-    description: Crossplane specs.
   v1beta1Environment:
     type: object
     properties:
       metadata:
+        title: metadata
         type: object
         properties:
           name:
@@ -935,7 +664,6 @@ definitions:
           annotations:
             type: string
         description: Metadata contains metadata information.
-        title: metadata
       id:
         type: string
         format: uint64
@@ -1073,69 +801,6 @@ definitions:
         format: date-time
         title: register time
     title: Provider
-  v1beta1QueryListConfigurationResponse:
-    type: object
-    properties:
-      configurations:
-        type: array
-        items:
-          type: object
-          properties:
-            id:
-              type: string
-              format: uint64
-            metadata:
-              type: object
-              properties:
-                name:
-                  type: string
-                annotations:
-                  type: string
-              description: Metadata contains metadata information.
-            spec:
-              type: object
-              properties:
-                crossplane:
-                  type: object
-                  properties:
-                    version:
-                      type: string
-                  description: Crossplane specs.
-                package:
-                  type: string
-                aes_key:
-                  type: string
-              description: Spec defines the specification of the composition.
-            creator:
-              type: string
-          description: Configuration holds the configuration details.
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-    title: QueryListConfigurationResponse
   v1beta1QueryListEnvironmentResponse:
     type: object
     properties:
@@ -1145,6 +810,7 @@ definitions:
           type: object
           properties:
             metadata:
+              title: metadata
               type: object
               properties:
                 name:
@@ -1152,7 +818,6 @@ definitions:
                 annotations:
                   type: string
               description: Metadata contains metadata information.
-              title: metadata
             id:
               type: string
               format: uint64
@@ -1264,41 +929,6 @@ definitions:
                    PageResponse page = 2;
            }
     title: QueryListProviderResponse
-  v1beta1QueryShowConfigurationResponse:
-    type: object
-    properties:
-      configuration:
-        type: object
-        properties:
-          id:
-            type: string
-            format: uint64
-          metadata:
-            type: object
-            properties:
-              name:
-                type: string
-              annotations:
-                type: string
-            description: Metadata contains metadata information.
-          spec:
-            type: object
-            properties:
-              crossplane:
-                type: object
-                properties:
-                  version:
-                    type: string
-                description: Crossplane specs.
-              package:
-                type: string
-              aes_key:
-                type: string
-            description: Spec defines the specification of the composition.
-          creator:
-            type: string
-        description: Configuration holds the configuration details.
-    title: QueryShowConfigurationResponse
   v1beta1QueryShowEnvironmentResponse:
     type: object
     properties:
@@ -1306,6 +936,7 @@ definitions:
         type: object
         properties:
           metadata:
+            title: metadata
             type: object
             properties:
               name:
@@ -1313,7 +944,6 @@ definitions:
               annotations:
                 type: string
             description: Metadata contains metadata information.
-            title: metadata
           id:
             type: string
             format: uint64

@@ -19,22 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_ShowConfiguration_FullMethodName = "/overlock.crossplane.v1beta1.Query/ShowConfiguration"
-	Query_ListConfiguration_FullMethodName = "/overlock.crossplane.v1beta1.Query/ListConfiguration"
-	Query_ShowEnvironment_FullMethodName   = "/overlock.crossplane.v1beta1.Query/ShowEnvironment"
-	Query_ListEnvironment_FullMethodName   = "/overlock.crossplane.v1beta1.Query/ListEnvironment"
-	Query_ShowProvider_FullMethodName      = "/overlock.crossplane.v1beta1.Query/ShowProvider"
-	Query_ListProvider_FullMethodName      = "/overlock.crossplane.v1beta1.Query/ListProvider"
+	Query_ShowEnvironment_FullMethodName = "/overlock.crossplane.v1beta1.Query/ShowEnvironment"
+	Query_ListEnvironment_FullMethodName = "/overlock.crossplane.v1beta1.Query/ListEnvironment"
+	Query_ShowProvider_FullMethodName    = "/overlock.crossplane.v1beta1.Query/ShowProvider"
+	Query_ListProvider_FullMethodName    = "/overlock.crossplane.v1beta1.Query/ListProvider"
 )
 
 // QueryClient is the client API for Query service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type QueryClient interface {
-	// Queries a list of ShowConfiguration items.
-	ShowConfiguration(ctx context.Context, in *QueryShowConfigurationRequest, opts ...grpc.CallOption) (*QueryShowConfigurationResponse, error)
-	// Queries a list of ListConfiguration items.
-	ListConfiguration(ctx context.Context, in *QueryListConfigurationRequest, opts ...grpc.CallOption) (*QueryListConfigurationResponse, error)
 	// Queries a list of ShowEnvironment items.
 	ShowEnvironment(ctx context.Context, in *QueryShowEnvironmentRequest, opts ...grpc.CallOption) (*QueryShowEnvironmentResponse, error)
 	// Queries a list of ListEnvironment items.
@@ -51,24 +45,6 @@ type queryClient struct {
 
 func NewQueryClient(cc grpc.ClientConnInterface) QueryClient {
 	return &queryClient{cc}
-}
-
-func (c *queryClient) ShowConfiguration(ctx context.Context, in *QueryShowConfigurationRequest, opts ...grpc.CallOption) (*QueryShowConfigurationResponse, error) {
-	out := new(QueryShowConfigurationResponse)
-	err := c.cc.Invoke(ctx, Query_ShowConfiguration_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) ListConfiguration(ctx context.Context, in *QueryListConfigurationRequest, opts ...grpc.CallOption) (*QueryListConfigurationResponse, error) {
-	out := new(QueryListConfigurationResponse)
-	err := c.cc.Invoke(ctx, Query_ListConfiguration_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *queryClient) ShowEnvironment(ctx context.Context, in *QueryShowEnvironmentRequest, opts ...grpc.CallOption) (*QueryShowEnvironmentResponse, error) {
@@ -111,10 +87,6 @@ func (c *queryClient) ListProvider(ctx context.Context, in *QueryListProviderReq
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
-	// Queries a list of ShowConfiguration items.
-	ShowConfiguration(context.Context, *QueryShowConfigurationRequest) (*QueryShowConfigurationResponse, error)
-	// Queries a list of ListConfiguration items.
-	ListConfiguration(context.Context, *QueryListConfigurationRequest) (*QueryListConfigurationResponse, error)
 	// Queries a list of ShowEnvironment items.
 	ShowEnvironment(context.Context, *QueryShowEnvironmentRequest) (*QueryShowEnvironmentResponse, error)
 	// Queries a list of ListEnvironment items.
@@ -130,12 +102,6 @@ type QueryServer interface {
 type UnimplementedQueryServer struct {
 }
 
-func (UnimplementedQueryServer) ShowConfiguration(context.Context, *QueryShowConfigurationRequest) (*QueryShowConfigurationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ShowConfiguration not implemented")
-}
-func (UnimplementedQueryServer) ListConfiguration(context.Context, *QueryListConfigurationRequest) (*QueryListConfigurationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConfiguration not implemented")
-}
 func (UnimplementedQueryServer) ShowEnvironment(context.Context, *QueryShowEnvironmentRequest) (*QueryShowEnvironmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowEnvironment not implemented")
 }
@@ -159,42 +125,6 @@ type UnsafeQueryServer interface {
 
 func RegisterQueryServer(s grpc.ServiceRegistrar, srv QueryServer) {
 	s.RegisterService(&Query_ServiceDesc, srv)
-}
-
-func _Query_ShowConfiguration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryShowConfigurationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).ShowConfiguration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_ShowConfiguration_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ShowConfiguration(ctx, req.(*QueryShowConfigurationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_ListConfiguration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryListConfigurationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).ListConfiguration(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_ListConfiguration_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ListConfiguration(ctx, req.(*QueryListConfigurationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Query_ShowEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -276,14 +206,6 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "overlock.crossplane.v1beta1.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "ShowConfiguration",
-			Handler:    _Query_ShowConfiguration_Handler,
-		},
-		{
-			MethodName: "ListConfiguration",
-			Handler:    _Query_ListConfiguration_Handler,
-		},
 		{
 			MethodName: "ShowEnvironment",
 			Handler:    _Query_ShowEnvironment_Handler,

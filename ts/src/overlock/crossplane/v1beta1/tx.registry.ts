@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgCreateConfiguration, MsgUpdateConfiguration, MsgDeleteConfiguration, MsgCreateEnvironment, MsgUpdateEnvironment, MsgDeleteEnvironment, MsgCreateProvider, MsgUpdateProvider, MsgDeleteProvider } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/overlock.crossplane.v1beta1.MsgCreateConfiguration", MsgCreateConfiguration], ["/overlock.crossplane.v1beta1.MsgUpdateConfiguration", MsgUpdateConfiguration], ["/overlock.crossplane.v1beta1.MsgDeleteConfiguration", MsgDeleteConfiguration], ["/overlock.crossplane.v1beta1.MsgCreateEnvironment", MsgCreateEnvironment], ["/overlock.crossplane.v1beta1.MsgUpdateEnvironment", MsgUpdateEnvironment], ["/overlock.crossplane.v1beta1.MsgDeleteEnvironment", MsgDeleteEnvironment], ["/overlock.crossplane.v1beta1.MsgCreateProvider", MsgCreateProvider], ["/overlock.crossplane.v1beta1.MsgUpdateProvider", MsgUpdateProvider], ["/overlock.crossplane.v1beta1.MsgDeleteProvider", MsgDeleteProvider]];
+import { MsgCreateEnvironment, MsgUpdateEnvironment, MsgDeleteEnvironment, MsgCreateProvider, MsgUpdateProvider, MsgDeleteProvider } from "./tx";
+export const registry: ReadonlyArray<[string, GeneratedType]> = [["/overlock.crossplane.v1beta1.MsgCreateEnvironment", MsgCreateEnvironment], ["/overlock.crossplane.v1beta1.MsgUpdateEnvironment", MsgUpdateEnvironment], ["/overlock.crossplane.v1beta1.MsgDeleteEnvironment", MsgDeleteEnvironment], ["/overlock.crossplane.v1beta1.MsgCreateProvider", MsgCreateProvider], ["/overlock.crossplane.v1beta1.MsgUpdateProvider", MsgUpdateProvider], ["/overlock.crossplane.v1beta1.MsgDeleteProvider", MsgDeleteProvider]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -9,24 +9,6 @@ export const load = (protoRegistry: Registry) => {
 };
 export const MessageComposer = {
   encoded: {
-    createConfiguration(value: MsgCreateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgCreateConfiguration",
-        value: MsgCreateConfiguration.encode(value).finish()
-      };
-    },
-    updateConfiguration(value: MsgUpdateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration",
-        value: MsgUpdateConfiguration.encode(value).finish()
-      };
-    },
-    deleteConfiguration(value: MsgDeleteConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgDeleteConfiguration",
-        value: MsgDeleteConfiguration.encode(value).finish()
-      };
-    },
     createEnvironment(value: MsgCreateEnvironment) {
       return {
         typeUrl: "/overlock.crossplane.v1beta1.MsgCreateEnvironment",
@@ -65,24 +47,6 @@ export const MessageComposer = {
     }
   },
   withTypeUrl: {
-    createConfiguration(value: MsgCreateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgCreateConfiguration",
-        value
-      };
-    },
-    updateConfiguration(value: MsgUpdateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration",
-        value
-      };
-    },
-    deleteConfiguration(value: MsgDeleteConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgDeleteConfiguration",
-        value
-      };
-    },
     createEnvironment(value: MsgCreateEnvironment) {
       return {
         typeUrl: "/overlock.crossplane.v1beta1.MsgCreateEnvironment",
@@ -121,24 +85,6 @@ export const MessageComposer = {
     }
   },
   fromPartial: {
-    createConfiguration(value: MsgCreateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgCreateConfiguration",
-        value: MsgCreateConfiguration.fromPartial(value)
-      };
-    },
-    updateConfiguration(value: MsgUpdateConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration",
-        value: MsgUpdateConfiguration.fromPartial(value)
-      };
-    },
-    deleteConfiguration(value: MsgDeleteConfiguration) {
-      return {
-        typeUrl: "/overlock.crossplane.v1beta1.MsgDeleteConfiguration",
-        value: MsgDeleteConfiguration.fromPartial(value)
-      };
-    },
     createEnvironment(value: MsgCreateEnvironment) {
       return {
         typeUrl: "/overlock.crossplane.v1beta1.MsgCreateEnvironment",

@@ -4,13 +4,9 @@ import { BinaryReader } from "../../../binary";
 import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
 import { ReactQueryParams } from "../../../react-query";
 import { useQuery } from "@tanstack/react-query";
-import { QueryShowConfigurationRequest, QueryShowConfigurationResponse, QueryListConfigurationRequest, QueryListConfigurationResponse, QueryShowEnvironmentRequest, QueryShowEnvironmentResponse, QueryListEnvironmentRequest, QueryListEnvironmentResponse, QueryShowProviderRequest, QueryShowProviderResponse, QueryListProviderRequest, QueryListProviderResponse } from "./query";
+import { QueryShowEnvironmentRequest, QueryShowEnvironmentResponse, QueryListEnvironmentRequest, QueryListEnvironmentResponse, QueryShowProviderRequest, QueryShowProviderResponse, QueryListProviderRequest, QueryListProviderResponse } from "./query";
 /** Query defines the gRPC querier service. */
 export interface Query {
-  /** Queries a list of ShowConfiguration items. */
-  showConfiguration(request: QueryShowConfigurationRequest): Promise<QueryShowConfigurationResponse>;
-  /** Queries a list of ListConfiguration items. */
-  listConfiguration(request: QueryListConfigurationRequest): Promise<QueryListConfigurationResponse>;
   /** Queries a list of ShowEnvironment items. */
   showEnvironment(request: QueryShowEnvironmentRequest): Promise<QueryShowEnvironmentResponse>;
   /** Queries a list of ListEnvironment items. */
@@ -24,22 +20,10 @@ export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   constructor(rpc: Rpc) {
     this.rpc = rpc;
-    this.showConfiguration = this.showConfiguration.bind(this);
-    this.listConfiguration = this.listConfiguration.bind(this);
     this.showEnvironment = this.showEnvironment.bind(this);
     this.listEnvironment = this.listEnvironment.bind(this);
     this.showProvider = this.showProvider.bind(this);
     this.listProvider = this.listProvider.bind(this);
-  }
-  showConfiguration(request: QueryShowConfigurationRequest): Promise<QueryShowConfigurationResponse> {
-    const data = QueryShowConfigurationRequest.encode(request).finish();
-    const promise = this.rpc.request("overlock.crossplane.v1beta1.Query", "ShowConfiguration", data);
-    return promise.then(data => QueryShowConfigurationResponse.decode(new BinaryReader(data)));
-  }
-  listConfiguration(request: QueryListConfigurationRequest): Promise<QueryListConfigurationResponse> {
-    const data = QueryListConfigurationRequest.encode(request).finish();
-    const promise = this.rpc.request("overlock.crossplane.v1beta1.Query", "ListConfiguration", data);
-    return promise.then(data => QueryListConfigurationResponse.decode(new BinaryReader(data)));
   }
   showEnvironment(request: QueryShowEnvironmentRequest): Promise<QueryShowEnvironmentResponse> {
     const data = QueryShowEnvironmentRequest.encode(request).finish();
@@ -66,12 +50,6 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    showConfiguration(request: QueryShowConfigurationRequest): Promise<QueryShowConfigurationResponse> {
-      return queryService.showConfiguration(request);
-    },
-    listConfiguration(request: QueryListConfigurationRequest): Promise<QueryListConfigurationResponse> {
-      return queryService.listConfiguration(request);
-    },
     showEnvironment(request: QueryShowEnvironmentRequest): Promise<QueryShowEnvironmentResponse> {
       return queryService.showEnvironment(request);
     },
@@ -86,12 +64,6 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     }
   };
 };
-export interface UseShowConfigurationQuery<TData> extends ReactQueryParams<QueryShowConfigurationResponse, TData> {
-  request: QueryShowConfigurationRequest;
-}
-export interface UseListConfigurationQuery<TData> extends ReactQueryParams<QueryListConfigurationResponse, TData> {
-  request: QueryListConfigurationRequest;
-}
 export interface UseShowEnvironmentQuery<TData> extends ReactQueryParams<QueryShowEnvironmentResponse, TData> {
   request: QueryShowEnvironmentRequest;
 }
@@ -116,24 +88,6 @@ const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | 
 };
 export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
   const queryService = getQueryService(rpc);
-  const useShowConfiguration = <TData = QueryShowConfigurationResponse,>({
-    request,
-    options
-  }: UseShowConfigurationQuery<TData>) => {
-    return useQuery<QueryShowConfigurationResponse, Error, TData>(["showConfigurationQuery", request], () => {
-      if (!queryService) throw new Error("Query Service not initialized");
-      return queryService.showConfiguration(request);
-    }, options);
-  };
-  const useListConfiguration = <TData = QueryListConfigurationResponse,>({
-    request,
-    options
-  }: UseListConfigurationQuery<TData>) => {
-    return useQuery<QueryListConfigurationResponse, Error, TData>(["listConfigurationQuery", request], () => {
-      if (!queryService) throw new Error("Query Service not initialized");
-      return queryService.listConfiguration(request);
-    }, options);
-  };
   const useShowEnvironment = <TData = QueryShowEnvironmentResponse,>({
     request,
     options
@@ -171,8 +125,6 @@ export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
     }, options);
   };
   return {
-    /** Queries a list of ShowConfiguration items. */useShowConfiguration,
-    /** Queries a list of ListConfiguration items. */useListConfiguration,
     /** Queries a list of ShowEnvironment items. */useShowEnvironment,
     /** Queries a list of ListEnvironment items. */useListEnvironment,
     /** Queries a list of ShowProvider items. */useShowProvider,

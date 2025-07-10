@@ -1,21 +1,6 @@
 //@ts-nocheck
-import { MsgCreateConfiguration, MsgUpdateConfiguration, MsgDeleteConfiguration, MsgCreateEnvironment, MsgUpdateEnvironment, MsgDeleteEnvironment, MsgCreateProvider, MsgUpdateProvider, MsgDeleteProvider } from "./tx";
+import { MsgCreateEnvironment, MsgUpdateEnvironment, MsgDeleteEnvironment, MsgCreateProvider, MsgUpdateProvider, MsgDeleteProvider } from "./tx";
 export const AminoConverter = {
-  "/overlock.crossplane.v1beta1.MsgCreateConfiguration": {
-    aminoType: "/overlock.crossplane.v1beta1.MsgCreateConfiguration",
-    toAmino: MsgCreateConfiguration.toAmino,
-    fromAmino: MsgCreateConfiguration.fromAmino
-  },
-  "/overlock.crossplane.v1beta1.MsgUpdateConfiguration": {
-    aminoType: "/overlock.crossplane.v1beta1.MsgUpdateConfiguration",
-    toAmino: MsgUpdateConfiguration.toAmino,
-    fromAmino: MsgUpdateConfiguration.fromAmino
-  },
-  "/overlock.crossplane.v1beta1.MsgDeleteConfiguration": {
-    aminoType: "/overlock.crossplane.v1beta1.MsgDeleteConfiguration",
-    toAmino: MsgDeleteConfiguration.toAmino,
-    fromAmino: MsgDeleteConfiguration.fromAmino
-  },
   "/overlock.crossplane.v1beta1.MsgCreateEnvironment": {
     aminoType: "/overlock.crossplane.v1beta1.MsgCreateEnvironment",
     toAmino: MsgCreateEnvironment.toAmino,

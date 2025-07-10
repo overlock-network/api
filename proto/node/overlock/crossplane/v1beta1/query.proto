@@ -7,7 +7,6 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/wrappers.proto";
-import "overlock/crossplane/v1beta1/configuration.proto";
 import "overlock/crossplane/v1beta1/environment.proto";
 import "overlock/crossplane/v1beta1/provider.proto";
 
@@ -15,16 +14,6 @@ option go_package = "github.com/overlock-network/api/go/node/overlock/crossplane
 
 // Query defines the gRPC querier service.
 service Query {
-  // Queries a list of ShowConfiguration items.
-  rpc ShowConfiguration(QueryShowConfigurationRequest) returns (QueryShowConfigurationResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_configuration/{id}";
-  }
-
-  // Queries a list of ListConfiguration items.
-  rpc ListConfiguration(QueryListConfigurationRequest) returns (QueryListConfigurationResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_configuration";
-  }
-
   // Queries a list of ShowEnvironment items.
   rpc ShowEnvironment(QueryShowEnvironmentRequest) returns (QueryShowEnvironmentResponse) {
     option (google.api.http).get = "/overlock/crossplane/show_environment/{id}";
@@ -37,35 +26,13 @@ service Query {
 
   // Queries a list of ShowProvider items.
   rpc ShowProvider(QueryShowProviderRequest) returns (QueryShowProviderResponse) {
-    option (google.api.http).get = "/overlock/crossplane/show_Provider/{id}";
+    option (google.api.http).get = "/overlock/crossplane/show_provider/{id}";
   }
 
   // Queries a list of ListProvider items.
   rpc ListProvider(QueryListProviderRequest) returns (QueryListProviderResponse) {
-    option (google.api.http).get = "/overlock/crossplane/list_Provider";
+    option (google.api.http).get = "/overlock/crossplane/list_provider";
   }
-}
-
-// QueryShowConfigurationRequest
-message QueryShowConfigurationRequest {
-  uint64 id = 1;
-}
-
-// QueryShowConfigurationResponse
-message QueryShowConfigurationResponse {
-  Configuration configuration = 1 [(gogoproto.nullable) = false];
-}
-
-// QueryListConfigurationRequest
-message QueryListConfigurationRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
-}
-
-// QueryListConfigurationResponse
-message QueryListConfigurationResponse {
-  repeated Configuration configurations = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // QueryShowEnvironmentRequest
